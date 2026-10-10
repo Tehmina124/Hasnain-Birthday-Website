@@ -1,477 +1,355 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#160d24">
 <title>Dear Hasnain ❤️</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --gold:#f5d99d;
-  --lavender:#d6c5ff;
-  --pink:#ffb6d5;
-  --white:#fff8ff;
-}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box}
 body{
-  min-height:100vh;overflow-x:hidden;
-  background:radial-gradient(ellipse at top,#40204e 0%,#21132f 42%,#100a19 100%);
-  color:var(--white);
-  font-family:Georgia,"Times New Roman",serif;
+ margin:0;
+ font-family:Georgia,serif;
+ color:#fff4f7;
+ background:linear-gradient(135deg,#180c24,#41152f,#160d27);
+ text-align:center;
+ overflow-x:hidden;
 }
-button{font:inherit}
-#stars,.floating-layer{
-  position:fixed;inset:0;pointer-events:none;overflow:hidden;
-}
-#stars{z-index:0}
-.star{
-  position:absolute;background:#fff;border-radius:50%;
-  animation:twinkle 3s infinite ease-in-out;
-}
-@keyframes twinkle{
-  0%,100%{opacity:.2;transform:scale(.7)}
-  50%{opacity:1;transform:scale(1.3)}
-}
-.floating-layer{z-index:2}
-.float-heart{
-  position:absolute;bottom:-40px;
-  animation:floatUp linear forwards;opacity:.8;
-}
-@keyframes floatUp{
-  0%{transform:translateY(0) rotate(0);opacity:0}
-  10%{opacity:.8}
-  100%{transform:translateY(-115vh) rotate(35deg);opacity:0}
-}
-main{
-  position:relative;z-index:1;
-  width:min(900px,calc(100% - 28px));
-  margin:auto;padding:32px 0 60px;
-}
-.topline{
-  text-align:center;text-transform:uppercase;
-  letter-spacing:4px;font:11px Arial,sans-serif;
-  color:var(--gold);margin:5px 0 25px;
-}
-.hero{text-align:center;padding:38px 12px 28px}
-.eyebrow{
-  color:var(--lavender);font-size:13px;
-  letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;
+#intro{
+ min-height:100vh;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ padding:25px;
 }
 h1{
-  font-size:clamp(42px,9vw,82px);font-weight:normal;
-  line-height:1.06;color:var(--white);
-  text-shadow:0 0 30px #d49eff55;
+ color:#ffd6e7;
+ font-size:clamp(38px,8vw,76px);
+ text-shadow:0 0 25px #ff6baf;
+ margin:15px 0;
 }
-h1 span{color:var(--pink);font-style:italic}
-.subtitle{
-  max-width:580px;margin:22px auto 0;
-  line-height:1.9;color:#e7d8ee;font-size:16px;
+h2{color:#ffd5e6;font-size:clamp(25px,5vw,38px)}
+p{line-height:1.8}
+button{
+ background:linear-gradient(135deg,#ff5c9b,#a950c8);
+ border:1px solid #ffd7e9;
+ color:white;
+ padding:14px 25px;
+ border-radius:35px;
+ font-size:16px;
+ cursor:pointer;
+ margin:10px;
+ box-shadow:0 5px 25px #ff4f9c55;
 }
-.ornament{color:var(--gold);letter-spacing:12px;margin:24px 0;font-size:20px}
-.glass{
-  border:1px solid #ffffff25;
-  background:linear-gradient(135deg,#ffffff12,#ffffff05);
-  backdrop-filter:blur(14px);
-  border-radius:25px;
-  box-shadow:0 18px 65px #00000028;
+button:hover{transform:scale(1.04)}
+.scene{
+ display:none;
+ min-height:100vh;
+ padding:70px 18px;
+ animation:fade 1.2s ease;
 }
-.intro-card{
-  max-width:600px;margin:0 auto 26px;padding:27px 22px;text-align:center;
+.scene.active{display:block}
+@keyframes fade{
+ from{opacity:0;transform:translateY(15px)}
+ to{opacity:1;transform:translateY(0)}
 }
-.intro-card h2{font-weight:normal;color:var(--gold);font-size:25px;margin-bottom:12px}
-.intro-card p{line-height:1.9;color:#e7dcec;font-size:15px}
-.primary-btn,.secondary-btn{
-  border:0;border-radius:999px;padding:15px 26px;
-  cursor:pointer;transition:transform .2s,box-shadow .2s;margin:10px 5px;
+.glow{
+ color:#ffbdd8;
+ text-shadow:0 0 15px #ff65ad;
 }
-.primary-btn{
-  color:#29142b;background:linear-gradient(120deg,#f7dca4,#ffb9d8);
-  box-shadow:0 8px 30px #ffb6d533;font-weight:bold;
+.balloon{
+ position:fixed;
+ bottom:-120px;
+ font-size:40px;
+ animation:floatUp 9s linear infinite;
+ pointer-events:none;
+ z-index:5;
 }
-.secondary-btn{background:#ffffff0c;border:1px solid #ffffff40;color:var(--white)}
-.primary-btn:hover,.secondary-btn:hover{
-  transform:translateY(-3px);box-shadow:0 10px 30px #0003
+@keyframes floatUp{
+ 0%{transform:translateY(0) rotate(0)}
+ 100%{transform:translateY(-125vh) rotate(20deg)}
 }
-.section{margin:35px 0;text-align:center}
-.section h2{
-  font-size:clamp(27px,5vw,40px);font-weight:normal;
-  margin-bottom:12px;color:var(--gold);
+.heart{
+ position:fixed;
+ top:-30px;
+ pointer-events:none;
+ z-index:5;
+ animation:fall 7s linear forwards;
 }
-.section-intro{color:#d9c8e1;line-height:1.8;margin-bottom:23px}
-.photo-frame{
-  max-width:610px;margin:0 auto;padding:12px;border-radius:24px;
-  background:linear-gradient(140deg,#f5d99d88,#d6c5ff55,#ffb6d566);
-  box-shadow:0 20px 70px #0005;
+@keyframes fall{
+ to{transform:translateY(115vh) rotate(360deg);opacity:0}
 }
-.photo-inner{
-  position:relative;overflow:hidden;border-radius:16px;
-  background:#21152a;min-height:280px;
-  display:flex;align-items:center;justify-content:center;
+.card{
+ max-width:720px;
+ margin:25px auto;
+ padding:25px;
+ border:1px solid #ffc4df66;
+ border-radius:24px;
+ background:#ffffff0b;
+ box-shadow:0 12px 40px #0003;
 }
-#memoryPhoto{
-  display:block;width:100%;height:min(68vh,520px);
-  object-fit:contain;background:#17101e;
+.big{font-size:70px;margin:15px}
+.gallery{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+ gap:15px;
+ max-width:950px;
+ margin:25px auto;
 }
-.photo-caption{font-size:17px;color:var(--pink);margin-top:17px;min-height:25px;font-style:italic}
-.photo-count{font:12px Arial,sans-serif;color:#d9c8e1;margin-top:8px}
-.dots{display:flex;justify-content:center;gap:8px;margin:17px 0}
-.dot{width:7px;height:7px;border:0;border-radius:50%;background:#ffffff55;cursor:pointer}
-.dot.active{background:var(--gold);transform:scale(1.35)}
-.letter{
-  padding:clamp(24px,5vw,46px);max-width:700px;
-  margin:auto;text-align:left;line-height:2;font-size:17px;
+.gallery img{
+ width:100%;
+ height:220px;
+ object-fit:cover;
+ border-radius:18px;
+ border:2px solid #ffc3df99;
+ box-shadow:0 8px 22px #0005;
 }
-.letter .dear{font-size:25px;color:var(--pink);margin-bottom:17px}
-.letter p{margin:12px 0;color:#f0e4f4}
-.signature{text-align:right;color:var(--gold);font-style:italic;margin-top:25px}
-.wish-card{padding:35px 20px;text-align:center}
-.wish-word{font-size:clamp(30px,7vw,55px);color:var(--pink);margin:12px 0;font-style:italic}
-.wish-text{line-height:1.9;color:#e8d9ef;max-width:500px;margin:auto}
-.cake{font-size:90px;filter:drop-shadow(0 0 25px #ffb6d544);margin:14px 0}
-.final-note{font-size:clamp(24px,5vw,40px);line-height:1.5;color:var(--pink)}
-.hidden{display:none!important}
-#musicStatus{font:12px Arial,sans-serif;color:#d9c8e1;margin-top:10px;line-height:1.6}
-footer{text-align:center;padding:35px 10px 15px;color:#c6b1d1;font-size:13px;line-height:2}
-footer span{color:var(--pink)}
-#toast{
-  position:fixed;z-index:10;bottom:20px;left:50%;transform:translateX(-50%);
-  background:#2b1b37;border:1px solid #ffffff30;padding:12px 18px;
-  border-radius:20px;font:13px Arial,sans-serif;max-width:90%;text-align:center;
-  box-shadow:0 8px 30px #0005;display:none;
+.caption{color:#ffd6e7;font-size:15px}
+.cake{font-size:95px;animation:bounce 1.8s infinite}
+@keyframes bounce{
+ 50%{transform:translateY(-9px)}
 }
-@media(max-width:520px){
-  main{width:calc(100% - 20px);padding-top:20px}
-  .hero{padding-top:27px}
-  .intro-card{padding:23px 17px}
-  .letter{font-size:16px}
-  .photo-inner{min-height:230px}
-  #memoryPhoto{height:420px}
+#musicStatus{font-size:13px;color:#ffd2e5}
+#letter{
+ display:none;
+ white-space:pre-line;
+ font-size:19px;
+ line-height:2;
+ color:#ffe4ef;
 }
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important}
+footer{padding:30px;color:#eebdd2}
+@media(max-width:500px){
+ .scene{padding:45px 12px}
+ .gallery img{height:180px}
 }
 </style>
 </head>
 
 <body>
-<div id="stars" aria-hidden="true"></div>
-<div class="floating-layer" id="floatingLayer" aria-hidden="true"></div>
 
-<main>
-  <div class="topline">A little universe made just for you</div>
-
-  <header class="hero">
-    <div class="eyebrow">A special day • A special soul</div>
-    <h1>Dear <span>Hasnain</span> ❤️</h1>
-    <div class="ornament">✦ ♡ ✦</div>
-    <p class="subtitle">
-      Some people make ordinary moments feel magical.
-      This little surprise is for one of those people —
-      someone who deserves all the love in the world.
-    </p>
-  </header>
-
-  <section class="intro-card glass" id="welcome">
-    <h2>Someone has a message for you 💌</h2>
-    <p>Take a deep breath, turn your sound on, and open this little surprise made with love.</p>
-    <button class="primary-btn" id="openBtn" type="button">Open Your Surprise ❤️</button>
-    <div id="musicStatus">🎵 Tap the button to open your surprise and start the music.</div>
-  </section>
-
-  <section class="section hidden" id="wishSection">
-    <h2>A wish for you ✨</h2>
-    <p class="section-intro">From the heart, with love.</p>
-    <div class="wish-card glass">
-      <div style="font-size:42px">💖</div>
-      <div class="wish-word">Happy Birthday!</div>
-      <p class="wish-text">
-        May your days be filled with peace, your heart with happiness,
-        and your life with beautiful moments. May every little dream
-        find its way to you. You deserve so much goodness. 🌙
-      </p>
-    </div>
-  </section>
-
-  <section class="section hidden" id="memories">
-    <h2>Little moments, lovely memories 📸</h2>
-    <p class="section-intro">Every picture holds a little piece of a story.</p>
-    <div class="photo-frame">
-      <div class="photo-inner">
-        <img id="memoryPhoto" src="photoes/photo_1.jpeg" alt="Our special memory">
-      </div>
-    </div>
-    <div class="photo-caption" id="photoCaption">A little moment to keep forever 💗</div>
-    <div class="photo-count" id="photoCount">Memory 1 of 5</div>
-    <div class="dots" id="photoDots" aria-label="Choose a memory"></div>
-    <button class="secondary-btn" type="button" id="prevPhoto">← Previous</button>
-    <button class="secondary-btn" type="button" id="nextPhoto">Next →</button>
-  </section>
-
-  <section class="section hidden" id="letterSection">
-    <h2>A little letter for you 💌</h2>
-    <p class="section-intro">Not a long letter — just a few heartfelt words.</p>
-    <div class="letter glass">
-      <div class="dear">Dear Hasnain, ❤️</div>
-      <p>
-        I hope life brings you more reasons to smile than reasons to worry.
-        May you always find courage when things get difficult and happiness
-        in the smallest moments.
-      </p>
-      <p>
-        You are special, and I hope this little surprise reminds you that
-        someone is wishing beautiful things for you today and always.
-      </p>
-      <p>
-        Keep smiling, keep dreaming, and never forget how much you matter.
-        May this new chapter be gentle, bright, and full of blessings. ✨
-      </p>
-      <div class="signature">With lots of love, always 💕</div>
-    </div>
-  </section>
-
-  <section class="section hidden" id="cakeSection">
-    <h2>A little birthday celebration 🎂</h2>
-    <p class="section-intro">Make a wish and let the good things begin.</p>
-    <div class="wish-card glass">
-      <div class="cake" id="cakeEmoji">🎂</div>
-      <div class="final-note" id="cakeTitle">A wish just for you ✨</div>
-      <p class="wish-text" id="cakeMessage" style="margin-top:12px">
-        May this year bring you love, laughter, good health, and beautiful surprises.
-      </p>
-      <button class="primary-btn" id="celebrateBtn" type="button">Celebrate 🎉</button>
-    </div>
-  </section>
-
-  <section class="section hidden" id="finalSection">
-    <div class="glass wish-card">
-      <div style="font-size:50px;margin-bottom:15px">🌙 💗 🌹</div>
-      <div class="final-note">You deserve a beautiful life, Hasnain.</div>
-      <p class="wish-text" style="margin-top:18px">
-        May happiness find you in unexpected places, may your heart stay
-        hopeful, and may your brightest days still be ahead of you.
-      </p>
-      <div class="ornament">♡ ✦ ♡</div>
-      <button class="secondary-btn" type="button" id="replayBtn">Replay the Surprise ↻</button>
-    </div>
-  </section>
-
-  <footer>
-    Made with <span>♥</span>, a little sparkle, and lots of care.<br>
-    <span>For Hasnain — a day as lovely as your heart.</span>
-  </footer>
-</main>
-
-<audio id="birthdayMusic" preload="auto" loop>
-  <source src="music/birthday..mp3" type="audio/mpeg">
+<audio id="bgMusic" loop preload="auto">
+ <source src="music/birthday..mp3" type="audio/mpeg">
 </audio>
 
-<div id="toast" role="status" aria-live="polite"></div>
+<section id="intro">
+ <div class="big">💖</div>
+ <p class="glow">A LITTLE SURPRISE MADE WITH LOVE</p>
+ <h1>Dear Hasnain ❤️</h1>
+ <p>Someone special has a beautiful surprise waiting...</p>
+ <button onclick="startShow()">Open Your Surprise ❤️</button>
+ <p id="musicStatus">🎵 Music starts when you open your surprise</p>
+</section>
+
+<section class="scene" id="s1">
+ <div class="big">🎉💗🎈</div>
+ <h1>Happy Birthday</h1>
+ <h2 class="glow">My Dear Hasnain</h2>
+ <p>Today is all about you, your smile, and the happiness you bring. ❤️</p>
+</section>
+
+<section class="scene" id="s2">
+ <div class="big">🌹💌🌹</div>
+ <h2>A Little Wish For You</h2>
+ <div class="card">
+  <h2 class="glow">My Favourite Person ❤️</h2>
+  <p>May your days be full of happiness, your heart full of peace, and your life full of beautiful moments.</p>
+  <p>May every dream you hold come true. You deserve so much love. ✨</p>
+ </div>
+</section>
+
+<section class="scene" id="s3">
+ <div class="big">💝</div>
+ <h2>One Special Word</h2>
+ <h1 class="glow">PRECIOUS</h1>
+ <p>Because some people make life more beautiful just by being in it. 💗</p>
+</section>
+
+<section class="scene" id="s4">
+ <div class="cake">🎂</div>
+ <h2>Make A Birthday Wish</h2>
+ <div class="card">
+  <p>Close your eyes for a moment and make a beautiful wish. ✨</p>
+  <button onclick="cutCake()">Cut The Cake 🎂</button>
+  <p id="cakeMessage"></p>
+ </div>
+</section>
+
+<section class="scene" id="s5">
+ <div class="big">📸💕</div>
+ <h2>Our Beautiful Memories</h2>
+ <p>Every picture holds a little moment worth keeping. ❤️</p>
+ <div class="gallery" id="gallery"></div>
+ <p class="caption">Little moments, beautiful memories. 🌷</p>
+</section>
+
+<section class="scene" id="s6">
+ <div class="big">💌</div>
+ <h2>A Letter For You</h2>
+ <div class="card">
+  <p id="letter"></p>
+ </div>
+</section>
+
+<section class="scene" id="s7">
+ <div class="big">🌙💖✨</div>
+ <h1 class="glow">You Are Special</h1>
+ <div class="card">
+  <p>No birthday surprise can fully describe how special a person can be.</p>
+  <p>May this new year of your life bring you countless reasons to smile. ❤️</p>
+  <h2>Happy Birthday, Hasnain! 🎂</h2>
+ </div>
+ <button onclick="restartShow()">Watch Again ↻</button>
+</section>
+
+<footer>Made with love ❤️ for Hasnain</footer>
 
 <script>
-"use strict";
-
-/* Match these names exactly with the files in your GitHub photoes folder. */
-const photos = [
-  "photoes/photo_1.jpeg",
-  "photoes/photo_2.jpeg",
-  "photoes/photo_3.jpeg",
-  "photoes/photo_4.jpeg",
-  "photoes/photo_5.jpeg"
+// Change these filenames to match your actual photos.
+const photoFiles = [
+ "photoes/photo1.jpg",
+ "photoes/photo2.jpg",
+ "photoes/photo3.jpg",
+ "photoes/photo4.jpg",
+ "photoes/photo5.jpg"
 ];
 
-const captions = [
-  "A little moment to keep forever 💗",
-  "Some memories make us smile every time ✨",
-  "A beautiful moment in its own way 🌹",
-  "A picture, a feeling, a memory 💌",
-  "May there always be more lovely moments 💖"
+const gallery = document.getElementById("gallery");
+
+photoFiles.forEach((src,index)=>{
+ const img = document.createElement("img");
+ img.src = src;
+ img.alt = "Birthday memory " + (index+1);
+ img.loading = "lazy";
+ img.onerror = () => {
+   img.style.display = "none";
+ };
+ gallery.appendChild(img);
+});
+
+const scenes = [
+ "s1","s2","s3","s4","s5","s6","s7"
 ];
+let currentScene = 0;
+let sceneTimer = null;
+let started = false;
 
-const sectionIds = ["wishSection","memories","letterSection","cakeSection","finalSection"];
-const $ = id => document.getElementById(id);
+function startShow(){
+ document.getElementById("intro").style.display = "none";
 
-let currentPhoto = 0;
-let opened = false;
-let slideshowTimer = null;
-let toastTimer = null;
-let sceneTimers = [];
+ const music = document.getElementById("bgMusic");
+ music.volume = 0.65;
+ music.play().then(()=>{
+   document.getElementById("musicStatus").textContent =
+    "🎵 Playing your birthday music";
+ }).catch(()=>{
+   document.getElementById("musicStatus").textContent =
+    "Tap the music control below if playback is blocked.";
+   music.controls = true;
+   music.style.display = "block";
+   music.style.position = "fixed";
+   music.style.bottom = "10px";
+   music.style.left = "10px";
+   music.style.width = "90%";
+   music.style.zIndex = "20";
+ });
 
-function makeStars(){
-  const holder = $("stars");
-  for(let i=0;i<85;i++){
-    const star = document.createElement("span");
-    star.className = "star";
-    const size = Math.random()*2.5+1;
-    star.style.width = size+"px";
-    star.style.height = size+"px";
-    star.style.left = Math.random()*100+"%";
-    star.style.top = Math.random()*100+"%";
-    star.style.animationDelay = Math.random()*3+"s";
-    star.style.animationDuration = (2+Math.random()*4)+"s";
-    holder.appendChild(star);
+ createBalloons();
+ createHearts();
+ currentScene = 0;
+ showScene();
+ started = true;
+}
+
+function showScene(){
+ scenes.forEach(id=>{
+  document.getElementById(id).classList.remove("active");
+ });
+ if(currentScene >= scenes.length) return;
+
+ const scene = document.getElementById(scenes[currentScene]);
+ scene.classList.add("active");
+
+ if(scenes[currentScene] === "s6"){
+  typeLetter();
+ }
+
+ currentScene++;
+ if(currentScene < scenes.length){
+  sceneTimer = setTimeout(showScene, 6500);
+ }
+}
+
+function cutCake(){
+ document.getElementById("cakeMessage").innerHTML =
+  "🎉 Happy Birthday, Hasnain! ❤️<br>Your wish deserves to come true. ✨";
+ createHearts();
+}
+
+function typeLetter(){
+ const letter = document.getElementById("letter");
+ if(letter.dataset.done) return;
+ letter.dataset.done = "yes";
+ const message =
+`Dear Hasnain ❤️
+
+May your smile always shine bright.
+May happiness follow you everywhere.
+May your dreams become beautiful realities.
+
+You deserve the sweetest moments,
+the kindest people,
+and all the happiness in the world.
+
+Keep smiling, keep shining.
+Happy Birthday! 🎂💖`;
+ let i = 0;
+ function type(){
+  if(i < message.length){
+   letter.textContent += message.charAt(i++);
+   setTimeout(type, 35);
   }
+ }
+ type();
 }
 
-function showToast(message){
-  const toast = $("toast");
-  toast.textContent = message;
-  toast.style.display = "block";
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toast.style.display="none",4000);
+function createBalloons(){
+ const emojis = ["🎈","🎈","💗","🎈","💕"];
+ for(let i=0;i<18;i++){
+  const b = document.createElement("div");
+  b.className = "balloon";
+  b.textContent = emojis[i % emojis.length];
+  b.style.left = Math.random()*100 + "vw";
+  b.style.animationDelay = Math.random()*7 + "s";
+  b.style.animationDuration = (7+Math.random()*6) + "s";
+  document.body.appendChild(b);
+ }
 }
 
-function createHearts(count=25){
-  const layer = $("floatingLayer");
-  const symbols = ["❤️","💖","💕","💗","✨","🌸","🌹"];
-  for(let i=0;i<count;i++){
-    const heart = document.createElement("span");
-    heart.className = "float-heart";
-    heart.textContent = symbols[Math.floor(Math.random()*symbols.length)];
-    heart.style.left = Math.random()*100+"%";
-    heart.style.fontSize = (13+Math.random()*22)+"px";
-    heart.style.animationDuration = (5+Math.random()*6)+"s";
-    heart.style.animationDelay = (Math.random()*2)+"s";
-    layer.appendChild(heart);
-    setTimeout(()=>heart.remove(),14000);
-  }
+function createHearts(){
+ const emojis = ["❤️","💖","💕","💗","✨"];
+ for(let i=0;i<22;i++){
+  const h = document.createElement("span");
+  h.className = "heart";
+  h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+  h.style.left = Math.random()*100 + "vw";
+  h.style.fontSize = (15+Math.random()*22) + "px";
+  h.style.animationDelay = Math.random()*3 + "s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),9000);
+ }
 }
 
-function renderDots(){
-  const dots = $("photoDots");
-  dots.innerHTML = "";
-  photos.forEach((_,index)=>{
-    const button = document.createElement("button");
-    button.className = "dot"+(index===currentPhoto?" active":"");
-    button.type = "button";
-    button.setAttribute("aria-label","Show memory "+(index+1));
-    button.addEventListener("click",()=>showPhoto(index));
-    dots.appendChild(button);
-  });
+function restartShow(){
+ if(sceneTimer) clearTimeout(sceneTimer);
+ currentScene = 0;
+ document.getElementById("letter").textContent = "";
+ delete document.getElementById("letter").dataset.done;
+ showScene();
+ createHearts();
 }
 
-function showPhoto(index){
-  currentPhoto = (index+photos.length)%photos.length;
-  const img = $("memoryPhoto");
-  img.onerror = function(){
-    this.onerror = null;
-    this.alt = "Photo not found: "+photos[currentPhoto];
-    $("photoCaption").textContent = "Please check the filename: "+photos[currentPhoto];
-    showToast("Photo not found. GitHub par folder aur filename check karein.");
-  };
-  img.onload = function(){
-    $("photoCaption").textContent = captions[currentPhoto] || "A lovely memory 💗";
-  };
-  img.src = photos[currentPhoto];
-  $("photoCaption").textContent = captions[currentPhoto] || "A lovely memory 💗";
-  $("photoCount").textContent = "Memory "+(currentPhoto+1)+" of "+photos.length;
-  renderDots();
-}
-
-function showAllSections(){
-  sectionIds.forEach(id=>$(id).classList.remove("hidden"));
-}
-
-function startSlideshow(){
-  clearInterval(slideshowTimer);
-  slideshowTimer = setInterval(()=>{
-    if(!document.hidden && !$("memories").classList.contains("hidden")){
-      showPhoto(currentPhoto+1);
-    }
-  },5000);
-}
-
-async function playMusic(){
-  const music = $("birthdayMusic");
-  try{
-    await music.play();
-    $("musicStatus").textContent = "🎵 Music is playing — enjoy your surprise.";
-  }catch(error){
-    $("musicStatus").textContent =
-      "🎵 Music did not start. Check the file path and tap the page again.";
-  }
-}
-
-function clearSceneTimers(){
-  sceneTimers.forEach(timer=>clearTimeout(timer));
-  sceneTimers = [];
-}
-
-function scrollToSection(id){
-  const element = $(id);
-  if(element){
-    element.scrollIntoView({behavior:"smooth",block:"start"});
-  }
-}
-
-function scheduleScene(id,delay){
-  const timer = setTimeout(()=>{
-    if(opened) scrollToSection(id);
-  },delay);
-  sceneTimers.push(timer);
-}
-
-async function openSurprise(){
-  if(opened) return;
-  opened = true;
-  $("openBtn").disabled = true;
-  $("openBtn").textContent = "Your Surprise Is Open ❤️";
-
-  showAllSections();
-  showPhoto(0);
-  createHearts(45);
-  await playMusic();
-  startSlideshow();
-
-  scheduleScene("wishSection",1200);
-  scheduleScene("memories",6500);
-  scheduleScene("letterSection",13000);
-  scheduleScene("cakeSection",20000);
-  scheduleScene("finalSection",27000);
-}
-
-function celebrate(){
-  $("cakeEmoji").textContent = "💖🎂💖";
-  $("cakeTitle").textContent = "May your wish come true! ✨";
-  $("cakeMessage").textContent =
-    "May your heart stay peaceful, your dreams grow bigger, and your days become brighter. Happy Birthday, Hasnain! 🎉";
-  createHearts(65);
-  showToast("Sending you a sky full of wishes! 🎉❤️");
-}
-
-function replay(){
-  opened = false;
-  clearInterval(slideshowTimer);
-  clearSceneTimers();
-  currentPhoto = 0;
-
-  $("openBtn").disabled = false;
-  $("openBtn").textContent = "Open Your Surprise ❤️";
-
-  sectionIds.forEach(id=>$(id).classList.add("hidden"));
-
-  $("cakeEmoji").textContent = "🎂";
-  $("cakeTitle").textContent = "A wish just for you ✨";
-  $("cakeMessage").textContent =
-    "May this year bring you love, laughter, good health, and beautiful surprises.";
-
-  $("birthdayMusic").pause();
-  $("birthdayMusic").currentTime = 0;
-  $("musicStatus").textContent = "🎵 Tap the button to open your surprise and start the music.";
-
-  scrollToSection("welcome");
-  showToast("Your surprise is ready to begin again 💗");
-}
-
-$("openBtn").addEventListener("click",openSurprise);
-$("prevPhoto").addEventListener("click",()=>showPhoto(currentPhoto-1));
-$("nextPhoto").addEventListener("click",()=>showPhoto(currentPhoto+1));
-$("celebrateBtn").addEventListener("click",celebrate);
-$("replayBtn").addEventListener("click",replay);
-
-makeStars();
-showPhoto(0);
 </script>
 </body>
 </html>
