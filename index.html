@@ -181,8 +181,7 @@ button:hover{transform:translateY(-3px)}
 <div class="candle two"><div class="flame"></div></div>
 <div class="candle three"><div class="flame"></div></div>
 <div class="cakeDecor">✦ ✨ ✦ ✨ ✦</div>
-</div>
-<div class="knife"><div class="knifeBlade"></div><div class="knifeHandle"></div></div>
+</div><div class="knife"><div class="knifeBlade"></div><div class="knifeHandle"></div></div>
 </div>
 <div class="card"><p>Close your eyes, make a wish, and let this little moment be yours. ✨</p><p class="small">The cake will be cut automatically.</p></div>
 </section>
@@ -291,12 +290,7 @@ button:hover{transform:translateY(-3px)}
 <audio id="bgMusic" loop preload="auto"></audio>
 
 <script>
-/* =========================================================
-   ASSETS: keep these folders beside index.html
-   photoes/photoes_1.jpeg ... photoes_5.jpeg
-   music/birthday.mp3
-========================================================= */
-
+/* PHOTO AND MUSIC PATHS */
 const photos = [
   "photoes/photoes_1.jpeg",
   "photoes/photoes_2.jpeg",
@@ -311,9 +305,9 @@ const effects = document.getElementById("effects");
 const bgMusic = document.getElementById("bgMusic");
 const navigation = document.getElementById("navigation");
 
-let currentScene=0,started=false,sceneTimer=null,heartTimer=null,
-photoTimer=null,jarTimer=null,finaleTimer=null,photoIndex=0,
-jarIndex=0,finaleStarted=false;
+let currentScene=0,started=false,sceneTimer=null,heartTimer=null;
+let photoTimer=null,jarTimer=null,finaleTimer=null,photoIndex=0;
+let jarIndex=0,finaleStarted=false;
 
 const TOTAL_SCENES=15;
 const sceneDurations=[0,9000,9500,10000,9500,9000,8500,13000,9500,10000,9000,9000,9500,9000,0];
@@ -334,10 +328,10 @@ const jarWishes=[
 ];
 
 function clearSceneTimers(){
- if(sceneTimer) clearTimeout(sceneTimer);
- if(photoTimer) clearTimeout(photoTimer);
- if(jarTimer) clearTimeout(jarTimer);
- if(finaleTimer) clearTimeout(finaleTimer);
+ if(sceneTimer)clearTimeout(sceneTimer);
+ if(photoTimer)clearTimeout(photoTimer);
+ if(jarTimer)clearTimeout(jarTimer);
+ if(finaleTimer)clearTimeout(finaleTimer);
  sceneTimer=photoTimer=jarTimer=finaleTimer=null;
 }
 
@@ -349,53 +343,53 @@ function updateNavigation(){
 function showScene(number){
  clearSceneTimers();
  currentScene=Math.max(0,Math.min(TOTAL_SCENES-1,number));
+
  document.querySelectorAll(".scene").forEach((scene,index)=>{
-   scene.classList.toggle("active",index===currentScene);
+  scene.classList.toggle("active",index===currentScene);
  });
+
  navigation.style.display=started?"block":"none";
  updateNavigation();
 
- if(currentScene===2) animateBalloons();
- if(currentScene===3) animateCake();
- if(currentScene===4) animateGifts();
- if(currentScene===5) animateGarden();
- if(currentScene===6) openLetter();
- if(currentScene===7) startSlideshow();
- if(currentScene===8) startJar();
- if(currentScene===10) makeHeartStars();
- if(currentScene===11) makeNightStars();
- if(currentScene===14) celebrate();
+ if(currentScene===2)animateBalloons();
+ if(currentScene===3)animateCake();
+ if(currentScene===4)animateGifts();
+ if(currentScene===5)animateGarden();
+ if(currentScene===6)openLetter();
+ if(currentScene===7)startSlideshow();
+ if(currentScene===8)startJar();
+ if(currentScene===10)makeHeartStars();
+ if(currentScene===11)makeNightStars();
+ if(currentScene===14)celebrate();
 
  const duration=sceneDurations[currentScene];
  if(started&&duration>0){
-   const thisScene=currentScene;
-   sceneTimer=setTimeout(()=>{
-     if(currentScene===thisScene) showScene(thisScene+1);
-   },duration);
+  const thisScene=currentScene;
+  sceneTimer=setTimeout(()=>{
+   if(currentScene===thisScene)showScene(thisScene+1);
+  },duration);
  }
 }
 
-/* Music starts after the visitor clicks the surprise button. */
+/* FIXED MUSIC START */
 function startShow(){
- if(started) return;
-
+ if(started)return;
  started=true;
  navigation.style.display="block";
 
- bgMusic.src=musicFile;
+ bgMusic.src=new URL("music/birthday.mp3",document.baseURI).href;
  bgMusic.volume=0.45;
  bgMusic.load();
 
- const musicPromise=bgMusic.play();
- if(musicPromise && typeof musicPromise.catch==="function"){
-   musicPromise.catch(()=>{
-     console.warn("Music could not play. Check that music/birthday.mp3 exists.");
-   });
- }
+ bgMusic.play().catch(error=>{
+  console.error("Music could not play:",error);
+  alert("Music play nahi hui. Check karein: music/birthday.mp3");
+ });
 
  makeHearts(18);
- if(heartTimer) clearInterval(heartTimer);
+ if(heartTimer)clearInterval(heartTimer);
  heartTimer=setInterval(()=>{if(started)makeHearts(3)},1800);
+
  showScene(1);
 }
 
@@ -458,7 +452,6 @@ function animateBalloons(){
  document.querySelectorAll(".balloonUnit").forEach((unit,index)=>{
   const balloon=unit.querySelector(".balloon");
   const word=unit.querySelector(".balloonWord");
-
   balloon.classList.remove("popping");
   balloon.style.display="block";
   word.classList.remove("revealed");
@@ -482,8 +475,8 @@ function animateBalloons(){
 function animateCake(){
  const cake=document.getElementById("cakeStage");
  cake.classList.remove("cut","cutting");
-
  setTimeout(()=>{if(currentScene===3)cake.classList.add("cutting")},2400);
+
  setTimeout(()=>{
   if(currentScene!==3)return;
   cake.classList.add("cut");
@@ -496,7 +489,6 @@ function animateGifts(){
  document.querySelectorAll(".giftCard").forEach((card,index)=>{
   const gift=card.querySelector(".giftBox");
   const word=card.querySelector(".giftWord");
-
   gift.classList.remove("open");
   word.classList.remove("revealed");
 
@@ -505,7 +497,6 @@ function animateGifts(){
    gift.classList.add("open");
    const rect=gift.getBoundingClientRect();
    makeSparkBurst(rect.left+rect.width/2,rect.top+rect.height/2,10);
-
    setTimeout(()=>{
     if(currentScene===4)word.classList.add("revealed");
    },600);
@@ -531,7 +522,6 @@ function animateGarden(){
 function openLetter(){
  const envelope=document.getElementById("envelope");
  const letter=document.getElementById("letter");
-
  envelope.classList.remove("open");
  letter.classList.remove("open");
 
@@ -551,14 +541,11 @@ function startSlideshow(){
  const caption=document.getElementById("memoryCaption");
  const counter=document.getElementById("memoryCounter");
 
- if(!photos.length){
-  image.style.display="none";
-  caption.textContent="Your beautiful memories belong here ❤️";
-  counter.textContent="Add photos to the photoes folder.";
-  return;
- }
+ image.onerror=()=>{
+  caption.textContent="Photo not found — check the filename.";
+  counter.textContent="Expected path: "+photos[photoIndex];
+ };
 
- image.style.display="block";
  photoIndex=0;
  showPhoto();
 
@@ -576,12 +563,8 @@ function showPhoto(){
  const caption=document.getElementById("memoryCaption");
  const counter=document.getElementById("memoryCounter");
 
- image.onerror=()=>{
-  image.alt="Photo not found. Check the photoes folder and filenames.";
-  caption.textContent="Please check photo filenames in index.html.";
- };
  image.src=photos[photoIndex];
- caption.textContent=photos[photoIndex].split("/").pop().replace(/\.[^.]+$/,"").replace(/[_-]/g," ");
+ caption.textContent="A beautiful memory ❤️";
  counter.textContent="Memory "+(photoIndex+1)+" of "+photos.length;
 }
 
@@ -665,7 +648,6 @@ function makeShootingStar(){
 function celebrate(){
  if(finaleStarted)return;
  finaleStarted=true;
-
  makePetals(45);
  makeHearts(35);
  makeGoldenConfetti(100);
@@ -703,7 +685,6 @@ function resetAnimations(){
  document.getElementById("cakeStage").classList.remove("cut","cutting");
  document.getElementById("envelope").classList.remove("open");
  document.getElementById("letter").classList.remove("open");
-
  document.querySelectorAll(".note").forEach(n=>n.classList.remove("open"));
  document.getElementById("memoryImage").src="";
  document.getElementById("starField").innerHTML="";
@@ -713,10 +694,8 @@ function resetAnimations(){
 
 function replayShow(){
  clearSceneTimers();
-
  if(heartTimer)clearInterval(heartTimer);
  heartTimer=null;
-
  effects.innerHTML="";
  photoIndex=0;
  jarIndex=0;
