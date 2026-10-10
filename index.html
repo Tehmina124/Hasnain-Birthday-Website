@@ -22,8 +22,7 @@
 body {
     min-height: 100vh;
     overflow-x: hidden;
-    background:
-        radial-gradient(ellipse at top, #3b214e 0%, #170e29 55%, #090711 100%);
+    background: radial-gradient(ellipse at top, #3b214e 0%, #170e29 55%, #090711 100%);
     color: white;
     font-family: Georgia, "Times New Roman", serif;
     text-align: center;
@@ -153,6 +152,16 @@ button:hover {
     opacity: .9;
 }
 
+.music-control {
+    position: fixed;
+    z-index: 20;
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 15px;
+    font-size: .85rem;
+    margin: 0;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(18px); }
     to { opacity: 1; transform: translateY(0); }
@@ -178,11 +187,16 @@ button:hover {
 </head>
 
 <body>
+
 <div id="effects"></div>
 
 <audio id="bgMusic" loop preload="auto">
-    <source src="music/birthday.mp3" type="audio/mpeg">
+    <source src="./music/birthday.mp3" type="audio/mpeg">
 </audio>
+
+<button id="musicButton" class="music-control hidden" type="button">
+    🔊 Music On
+</button>
 
 <main id="app">
 
@@ -191,7 +205,7 @@ button:hover {
         <h1>Dear Hasnain ❤️</h1>
         <p>Some people make ordinary moments feel magical.</p>
         <p>And you are one of those people. 💖</p>
-        <button id="startButton">Open Your Surprise ❤️</button>
+        <button id="startButton" type="button">Open Your Surprise ❤️</button>
         <p class="small">Turn your sound on for the full experience 🎶</p>
     </section>
 
@@ -210,7 +224,7 @@ button:hover {
     <section class="scene hidden" id="scene3">
         <h2>Five Little Memories 💕</h2>
         <div class="photo-frame">
-            <img id="memoryPhoto" src="photoes/photoes_1.jpeg" alt="Our memory">
+            <img id="memoryPhoto" src="./photoes/photoes_1.jpeg" alt="Our memory">
         </div>
         <p id="memoryCaption" class="photo-caption">A little moment, a lovely memory ❤️</p>
     </section>
@@ -295,18 +309,18 @@ button:hover {
         <div class="cake">🎂💖🎂</div>
         <p>May your life always be filled with love, laughter and beautiful beginnings.</p>
         <p class="glow">Wishing you the happiest birthday! ❤️</p>
-        <button onclick="replayShow()">Watch Again 💕</button>
+        <button id="replayButton" type="button">Watch Again 💕</button>
     </section>
 
 </main>
 
 <script>
 const photos = [
-    "photoes/photoes_1.jpeg",
-    "photoes/photoes_2.jpeg",
-    "photoes/photoes_3.jpeg",
-    "photoes/photoes_4.jpeg",
-    "photoes/photoes_5.jpeg"
+    "./photoes/photoes_1.jpeg",
+    "./photoes/photoes_2.jpeg",
+    "./photoes/photoes_3.jpeg",
+    "./photoes/photoes_4.jpeg",
+    "./photoes/photoes_5.jpeg"
 ];
 
 const captions = [
@@ -317,15 +331,16 @@ const captions = [
     "Here's to many more beautiful memories 💕"
 ];
 
-const musicFile = "music/birthday.mp3";
 const bgMusic = document.getElementById("bgMusic");
 const startButton = document.getElementById("startButton");
+const musicButton = document.getElementById("musicButton");
 const memoryPhoto = document.getElementById("memoryPhoto");
 const memoryCaption = document.getElementById("memoryCaption");
 
-let currentScene = 0;
-let slideshowTimer = null;
 let showStarted = false;
+let slideshowTimer = null;
+let sceneTimers = [];
+let photoIndex = 0;
 
 function showScene(index) {
     document.querySelectorAll(".scene").forEach(scene => {
@@ -335,9 +350,8 @@ function showScene(index) {
     const target = document.getElementById("scene" + index);
     if (target) {
         target.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
-
-    currentScene = index;
 }
 
 function makeParticles(count = 18) {
@@ -359,10 +373,11 @@ function makeParticles(count = 18) {
 }
 
 function startSlideshow() {
-    let photoIndex = 0;
+    photoIndex = 0;
+    memoryPhoto.src = photos[photoIndex];
+    memoryCaption.textContent = captions[photoIndex];
 
-    memoryPhoto.src = photos[0];
-    memoryCaption.textContent = captions[0];
+    if (slideshowTimer) clearInterval(slideshowTimer);
 
     slideshowTimer = setInterval(() => {
         photoIndex = (photoIndex + 1) % photos.length;
@@ -371,74 +386,120 @@ function startSlideshow() {
     }, 2500);
 }
 
+function scheduleScene(index, delay) {
+    const timer = setTimeout(() => showScene(index), delay);
+    sceneTimers.push(timer);
+}
+
 function startShow() {
     if (showStarted) return;
     showStarted = true;
 
-    bgMusic.src = new URL(musicFile, document.baseURI).href;
-    bgMusic.volume = 0.65;
-    bgMusic.play().catch(() => {
-        // Some browsers may block audio; the surprise will still continue.
+    startButton.disabled = true;
+    startButton.textContent = "Your Surprise Is Opening ❤️";
+
+    // Music begins after the visitor clicks the surprise button.
+    bgMusic.volume = 0.75;
+    bgMusic.currentTime = 0;
+
+    bgMusic.play().then(() => {
+        musicButton.classList.remove("hidden");
+        musicButton.textContent = "🔊 Music On";
+    }).catch(() => {
+        musicButton.classList.remove("hidden");
+        musicButton.textContent = "▶ Play Music";
     });
 
     makeParticles(35);
     showScene(1);
 
-    setTimeout(() => showScene(2), 4500);
+    scheduleScene(2, 4500);
 
-    setTimeout(() => {
+    const slideshowStart = setTimeout(() => {
         showScene(3);
         startSlideshow();
     }, 9000);
+    sceneTimers.push(slideshowStart);
 
-    setTimeout(() => {
+    scheduleScene(4, 22500);
+
+    const stopSlideshow = setTimeout(() => {
         if (slideshowTimer) {
             clearInterval(slideshowTimer);
             slideshowTimer = null;
         }
-        showScene(4);
     }, 22500);
+    sceneTimers.push(stopSlideshow);
 
-    setTimeout(() => showScene(5), 28500);
-    setTimeout(() => showScene(6), 34500);
-    setTimeout(() => {
+    scheduleScene(5, 28500);
+    scheduleScene(6, 34500);
+
+    const letterTimer = setTimeout(() => {
         makeParticles(45);
         showScene(7);
     }, 40500);
+    sceneTimers.push(letterTimer);
 
-    setTimeout(() => showScene(8), 48500);
-    setTimeout(() => showScene(9), 54500);
-    setTimeout(() => showScene(10), 60500);
-    setTimeout(() => {
+    scheduleScene(8, 48500);
+    scheduleScene(9, 54500);
+    scheduleScene(10, 60500);
+
+    const heartsTimer = setTimeout(() => {
         makeParticles(40);
         showScene(11);
     }, 66500);
-    setTimeout(() => showScene(12), 72500);
-    setTimeout(() => showScene(13), 78500);
-    setTimeout(() => {
+    sceneTimers.push(heartsTimer);
+
+    scheduleScene(12, 72500);
+    scheduleScene(13, 78500);
+
+    const finaleTimer = setTimeout(() => {
         makeParticles(65);
         showScene(14);
     }, 84500);
+    sceneTimers.push(finaleTimer);
+}
+
+function toggleMusic() {
+    if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+            musicButton.textContent = "🔊 Music On";
+        }).catch(() => {
+            musicButton.textContent = "▶ Play Music";
+        });
+    } else {
+        bgMusic.pause();
+        musicButton.textContent = "🔇 Music Off";
+    }
 }
 
 function replayShow() {
+    sceneTimers.forEach(timer => clearTimeout(timer));
+    sceneTimers = [];
+
     if (slideshowTimer) {
         clearInterval(slideshowTimer);
         slideshowTimer = null;
     }
 
-    document.querySelectorAll(".scene").forEach(scene => {
-        scene.classList.add("hidden");
-    });
-
     showStarted = false;
-    currentScene = 0;
+    startButton.disabled = false;
+    startButton.textContent = "Open Your Surprise ❤️";
+    musicButton.classList.add("hidden");
+
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+
     showScene(0);
 }
 
 startButton.addEventListener("click", startShow);
+musicButton.addEventListener("click", toggleMusic);
+document.getElementById("replayButton").addEventListener("click", replayShow);
 
-setInterval(() => makeParticles(4), 1800);
+// Gentle floating hearts in the background.
+setInterval(() => makeParticles(3), 2200);
 </script>
+
 </body>
 </html>
