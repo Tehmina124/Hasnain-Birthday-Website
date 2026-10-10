@@ -7,349 +7,654 @@
 <title>Dear Hasnain ❤️</title>
 
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:Georgia,serif;
- color:#fff4f7;
- background:linear-gradient(135deg,#180c24,#41152f,#160d27);
- text-align:center;
- overflow-x:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-#intro{
- min-height:100vh;
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
- padding:25px;
+
+:root {
+    --gold: #f5d99d;
+    --lavender: #d6c5ff;
+    --pink: #ffb6d5;
+    --night: #090a20;
 }
-h1{
- color:#ffd6e7;
- font-size:clamp(38px,8vw,76px);
- text-shadow:0 0 25px #ff6baf;
- margin:15px 0;
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: radial-gradient(circle at top, #29204f, #101127 50%, #070817);
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
 }
-h2{color:#ffd5e6;font-size:clamp(25px,5vw,38px)}
-p{line-height:1.8}
-button{
- background:linear-gradient(135deg,#ff5c9b,#a950c8);
- border:1px solid #ffd7e9;
- color:white;
- padding:14px 25px;
- border-radius:35px;
- font-size:16px;
- cursor:pointer;
- margin:10px;
- box-shadow:0 5px 25px #ff4f9c55;
+
+#stars, #particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
 }
-button:hover{transform:scale(1.04)}
-.scene{
- display:none;
- min-height:100vh;
- padding:70px 18px;
- animation:fade 1.2s ease;
+
+.star {
+    position: absolute;
+    color: #fff3c8;
+    animation: twinkle 2s infinite alternate;
 }
-.scene.active{display:block}
-@keyframes fade{
- from{opacity:0;transform:translateY(15px)}
- to{opacity:1;transform:translateY(0)}
+
+@keyframes twinkle {
+    from { opacity: .25; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.2); }
 }
-.glow{
- color:#ffbdd8;
- text-shadow:0 0 15px #ff65ad;
+
+.heart {
+    position: fixed;
+    bottom: -50px;
+    z-index: 1;
+    pointer-events: none;
+    animation: floatUp linear forwards;
 }
-.balloon{
- position:fixed;
- bottom:-120px;
- font-size:40px;
- animation:floatUp 9s linear infinite;
- pointer-events:none;
- z-index:5;
+
+@keyframes floatUp {
+    to { transform: translateY(-115vh) rotate(35deg); opacity: 0; }
 }
-@keyframes floatUp{
- 0%{transform:translateY(0) rotate(0)}
- 100%{transform:translateY(-125vh) rotate(20deg)}
+
+#app {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 14px;
 }
-.heart{
- position:fixed;
- top:-30px;
- pointer-events:none;
- z-index:5;
- animation:fall 7s linear forwards;
+
+.scene {
+    width: min(850px, 100%);
+    min-height: 590px;
+    display: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 32px 20px;
+    border: 1px solid rgba(245,217,157,.32);
+    border-radius: 28px;
+    background: linear-gradient(145deg, rgba(39,31,72,.78), rgba(10,12,34,.84));
+    box-shadow: 0 0 55px rgba(185,128,255,.13), inset 0 0 30px rgba(255,255,255,.025);
+    backdrop-filter: blur(12px);
+    animation: appear .9s ease;
 }
-@keyframes fall{
- to{transform:translateY(115vh) rotate(360deg);opacity:0}
+
+.scene.active { display: flex; }
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(18px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
-.card{
- max-width:720px;
- margin:25px auto;
- padding:25px;
- border:1px solid #ffc4df66;
- border-radius:24px;
- background:#ffffff0b;
- box-shadow:0 12px 40px #0003;
+
+.eyebrow {
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font: 11px Arial, sans-serif;
+    margin-bottom: 22px;
 }
-.big{font-size:70px;margin:15px}
-.gallery{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
- gap:15px;
- max-width:950px;
- margin:25px auto;
+
+h1 {
+    font-size: clamp(35px, 7vw, 68px);
+    line-height: 1.15;
+    color: var(--gold);
+    text-shadow: 0 0 25px rgba(245,217,157,.28);
+    margin-bottom: 22px;
 }
-.gallery img{
- width:100%;
- height:220px;
- object-fit:cover;
- border-radius:18px;
- border:2px solid #ffc3df99;
- box-shadow:0 8px 22px #0005;
+
+h2 {
+    color: var(--lavender);
+    font-size: clamp(26px, 5vw, 43px);
+    margin-bottom: 20px;
 }
-.caption{color:#ffd6e7;font-size:15px}
-.cake{font-size:95px;animation:bounce 1.8s infinite}
-@keyframes bounce{
- 50%{transform:translateY(-9px)}
+
+p {
+    max-width: 650px;
+    color: #f3eafa;
+    font-size: clamp(16px, 2.8vw, 20px);
+    line-height: 1.85;
 }
-#musicStatus{font-size:13px;color:#ffd2e5}
-#letter{
- display:none;
- white-space:pre-line;
- font-size:19px;
- line-height:2;
- color:#ffe4ef;
+
+.script {
+    color: var(--pink);
+    font-style: italic;
+    font-size: clamp(24px, 4vw, 37px);
+    margin: 18px 0;
 }
-footer{padding:30px;color:#eebdd2}
-@media(max-width:500px){
- .scene{padding:45px 12px}
- .gallery img{height:180px}
+
+button {
+    border: 1px solid rgba(245,217,157,.7);
+    color: #1b1531;
+    background: linear-gradient(120deg, #f5d99d, #ffbedc);
+    padding: 14px 27px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 28px;
+    box-shadow: 0 0 24px rgba(245,217,157,.18);
+    transition: .25s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 32px rgba(255,182,213,.35);
+}
+
+.emoji-art {
+    font-size: clamp(55px, 12vw, 100px);
+    margin: 12px 0 20px;
+    filter: drop-shadow(0 0 20px rgba(255,182,213,.24));
+}
+
+.balloons {
+    display: flex;
+    gap: 20px;
+    margin: 18px 0;
+    justify-content: center;
+}
+
+.balloon {
+    font-size: 48px;
+    animation: balloonFloat 2.5s ease-in-out infinite alternate;
+}
+.balloon:nth-child(2) { animation-delay: .4s; }
+.balloon:nth-child(3) { animation-delay: .8s; }
+.balloon:nth-child(4) { animation-delay: 1.2s; }
+
+@keyframes balloonFloat {
+    from { transform: translateY(8px) rotate(-5deg); }
+    to { transform: translateY(-15px) rotate(5deg); }
+}
+
+.cake {
+    font-size: 100px;
+    cursor: pointer;
+    animation: cakeGlow 2s infinite alternate;
+}
+@keyframes cakeGlow {
+    from { filter: drop-shadow(0 0 5px #ff9ecb); }
+    to { filter: drop-shadow(0 0 25px #f5d99d); }
+}
+
+.photo-frame {
+    width: min(420px, 100%);
+    height: 310px;
+    margin: 10px auto 20px;
+    border: 3px solid var(--gold);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 35px rgba(255,182,213,.2);
+    background: #17142e;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity .5s;
+}
+
+.photo-caption {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.letter {
+    text-align: left;
+    max-width: 600px;
+    padding: 25px;
+    line-height: 2;
+    border-left: 2px solid var(--gold);
+    background: rgba(255,255,255,.035);
+    border-radius: 0 15px 15px 0;
+}
+
+.gift-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.gift {
+    font-size: 65px;
+    cursor: pointer;
+    transition: .3s;
+}
+.gift:hover { transform: translateY(-8px) rotate(-8deg); }
+
+#wishMessage {
+    min-height: 50px;
+    margin-top: 15px;
+    color: var(--pink);
+    font-style: italic;
+}
+
+.progress {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,.1);
+}
+#progressBar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #d6c5ff, #f5d99d, #ffb6d5);
+    transition: width .5s;
+}
+
+.music-toggle {
+    position: fixed;
+    right: 14px;
+    top: 16px;
+    z-index: 10;
+    margin: 0;
+    padding: 10px 14px;
+    font-size: 13px;
+}
+
+.scene-number {
+    color: #b9acd8;
+    font: 11px Arial, sans-serif;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+
+footer {
+    position: fixed;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    text-align: center;
+    color: rgba(255,255,255,.55);
+    font: 11px Arial, sans-serif;
+    pointer-events: none;
+}
+
+@media(max-width: 520px) {
+    .scene {
+        min-height: 570px;
+        padding: 28px 16px;
+        border-radius: 20px;
+    }
+    .photo-frame { height: 260px; }
+    .letter { padding: 17px; }
+    .music-toggle { top: 8px; right: 8px; }
 }
 </style>
 </head>
 
 <body>
+<div id="stars"></div>
+<div id="particles"></div>
+
+<div class="progress"><div id="progressBar"></div></div>
+
+<button class="music-toggle" id="musicToggle" onclick="toggleMusic()">🎵 Music: On</button>
 
 <audio id="bgMusic" loop preload="auto">
- <source src="music/birthday..mp3" type="audio/mpeg">
+    <source src="music/birthday.mp3" type="audio/mpeg">
 </audio>
 
-<section id="intro">
- <div class="big">💖</div>
- <p class="glow">A LITTLE SURPRISE MADE WITH LOVE</p>
- <h1>Dear Hasnain ❤️</h1>
- <p>Someone special has a beautiful surprise waiting...</p>
- <button onclick="startShow()">Open Your Surprise ❤️</button>
- <p id="musicStatus">🎵 Music starts when you open your surprise</p>
-</section>
+<main id="app">
 
-<section class="scene" id="s1">
- <div class="big">🎉💗🎈</div>
- <h1>Happy Birthday</h1>
- <h2 class="glow">My Dear Hasnain</h2>
- <p>Today is all about you, your smile, and the happiness you bring. ❤️</p>
+<section class="scene active" id="s1">
+    <div class="eyebrow">A little surprise made with love</div>
+    <div class="emoji-art">🌙✨</div>
+    <h1>Dear Hasnain ❤️</h1>
+    <p>Some people make the world more beautiful just by being in it...</p>
+    <div class="script">And you are one of them.</div>
+    <p>Ready for your little surprise?</p>
+    <button onclick="startShow()">Open Your Surprise ❤️</button>
+    <div class="scene-number">01 / 15</div>
 </section>
 
 <section class="scene" id="s2">
- <div class="big">🌹💌🌹</div>
- <h2>A Little Wish For You</h2>
- <div class="card">
-  <h2 class="glow">My Favourite Person ❤️</h2>
-  <p>May your days be full of happiness, your heart full of peace, and your life full of beautiful moments.</p>
-  <p>May every dream you hold come true. You deserve so much love. ✨</p>
- </div>
+    <div class="eyebrow">Tonight is all about you</div>
+    <div class="balloons">
+        <span class="balloon">🎈</span><span class="balloon">💜</span>
+        <span class="balloon">🎈</span><span class="balloon">💖</span>
+    </div>
+    <h1>Happy Birthday!</h1>
+    <p>May your day be filled with peace, laughter, love, and all the beautiful things your heart deserves.</p>
+    <div class="script">You deserve a thousand reasons to smile.</div>
+    <div class="scene-number">02 / 15</div>
 </section>
 
 <section class="scene" id="s3">
- <div class="big">💝</div>
- <h2>One Special Word</h2>
- <h1 class="glow">PRECIOUS</h1>
- <p>Because some people make life more beautiful just by being in it. 💗</p>
+    <div class="eyebrow">A wish from my heart</div>
+    <div class="emoji-art">🌟</div>
+    <h2>My Birthday Wish for You</h2>
+    <p>May every new morning bring you hope, every challenge make you stronger, and every dream bring you closer to happiness.</p>
+    <p class="script">May life always be kind to you, Hasnain. ❤️</p>
+    <div class="scene-number">03 / 15</div>
 </section>
 
 <section class="scene" id="s4">
- <div class="cake">🎂</div>
- <h2>Make A Birthday Wish</h2>
- <div class="card">
-  <p>Close your eyes for a moment and make a beautiful wish. ✨</p>
-  <button onclick="cutCake()">Cut The Cake 🎂</button>
-  <p id="cakeMessage"></p>
- </div>
+    <div class="eyebrow">Make a beautiful wish</div>
+    <div class="emoji-art">🕯️🎂🕯️</div>
+    <h2>Your Birthday Cake</h2>
+    <div class="cake" onclick="cutCake()">🎂</div>
+    <p id="cakeText">Close your eyes, make a wish, and let the magic begin.</p>
+    <div class="scene-number">04 / 15</div>
 </section>
 
 <section class="scene" id="s5">
- <div class="big">📸💕</div>
- <h2>Our Beautiful Memories</h2>
- <p>Every picture holds a little moment worth keeping. ❤️</p>
- <div class="gallery" id="gallery"></div>
- <p class="caption">Little moments, beautiful memories. 🌷</p>
+    <div class="eyebrow">A little birthday magic</div>
+    <div class="emoji-art">🎉🎈🎊</div>
+    <h1>Make a Wish!</h1>
+    <p>I hope the universe hears every silent prayer in your heart and brings you more happiness than you can imagine.</p>
+    <div class="script">Keep shining, birthday star. ✨</div>
+    <div class="scene-number">05 / 15</div>
 </section>
 
 <section class="scene" id="s6">
- <div class="big">💌</div>
- <h2>A Letter For You</h2>
- <div class="card">
-  <p id="letter"></p>
- </div>
+    <div class="eyebrow">Little surprises for you</div>
+    <h2>Open Your Gifts 🎁</h2>
+    <p>Choose a gift to reveal a little message.</p>
+    <div class="gift-row">
+        <span class="gift" onclick="openGift(0)">🎁</span>
+        <span class="gift" onclick="openGift(1)">💝</span>
+        <span class="gift" onclick="openGift(2)">🎀</span>
+    </div>
+    <p id="wishMessage">Every gift has a little love inside. 💖</p>
+    <div class="scene-number">06 / 15</div>
 </section>
 
 <section class="scene" id="s7">
- <div class="big">🌙💖✨</div>
- <h1 class="glow">You Are Special</h1>
- <div class="card">
-  <p>No birthday surprise can fully describe how special a person can be.</p>
-  <p>May this new year of your life bring you countless reasons to smile. ❤️</p>
-  <h2>Happy Birthday, Hasnain! 🎂</h2>
- </div>
- <button onclick="restartShow()">Watch Again ↻</button>
+    <div class="eyebrow">Little moments, lovely memories</div>
+    <h2>Our Memory Gallery 📸</h2>
+    <div class="photo-frame">
+        <img id="memoryImage" src="photoes/photoes_1.jpeg" alt="A special memory">
+    </div>
+    <p class="photo-caption" id="photoCaption">A memory to keep close to the heart ❤️</p>
+    <button onclick="nextPhoto()">Next Memory 💕</button>
+    <div class="scene-number">07 / 15</div>
 </section>
 
-<footer>Made with love ❤️ for Hasnain</footer>
+<section class="scene" id="s8">
+    <div class="eyebrow">From the heart</div>
+    <h2>A Little Letter for You 💌</h2>
+    <div class="letter">
+        Dear Hasnain,<br><br>
+        On your special day, I wish you a life full of peace, success, and endless smiles. Never forget how special you are and how much happiness you bring into this world.<br><br>
+        May your dreams come true, your heart stay gentle, and your future shine brighter than the stars.<br><br>
+        <span style="color:#f5d99d">With lots of love, today and always. ❤️</span>
+    </div>
+    <div class="scene-number">08 / 15</div>
+</section>
+
+<section class="scene" id="s9">
+    <div class="eyebrow">A garden of good wishes</div>
+    <div class="emoji-art">🌹🌷🌹</div>
+    <h2>A Rose for You</h2>
+    <p>If every rose could carry a wish, I would send you a garden full of happiness, beautiful memories, and wonderful days ahead.</p>
+    <div class="script">You deserve all things beautiful. 🌹</div>
+    <div class="scene-number">09 / 15</div>
+</section>
+
+<section class="scene" id="s10">
+    <div class="eyebrow">A tiny reminder</div>
+    <div class="emoji-art">💜</div>
+    <h2>Never Forget...</h2>
+    <p>You are capable of wonderful things. Be proud of how far you have come, trust your journey, and never stop believing in yourself.</p>
+    <div class="script">Your best chapters are still ahead. ✨</div>
+    <div class="scene-number">10 / 15</div>
+</section>
+
+<section class="scene" id="s11">
+    <div class="eyebrow">A wish just for you</div>
+    <h2>Pick a Little Star ⭐</h2>
+    <p>Tap a star and see what it has to say.</p>
+    <div class="gift-row">
+        <span class="gift" onclick="starWish(0)">⭐</span>
+        <span class="gift" onclick="starWish(1)">🌟</span>
+        <span class="gift" onclick="starWish(2)">✨</span>
+    </div>
+    <p id="starMessage">Your little piece of birthday magic is waiting.</p>
+    <div class="scene-number">11 / 15</div>
+</section>
+
+<section class="scene" id="s12">
+    <div class="eyebrow">Under the same moon</div>
+    <div class="emoji-art">🌙✨</div>
+    <h2>Moonlight Wishes</h2>
+    <p>May your nights be peaceful, your mornings hopeful, and your heart always find reasons to be grateful.</p>
+    <div class="script">Some wishes are too precious for words. 💫</div>
+    <div class="scene-number">12 / 15</div>
+</section>
+
+<section class="scene" id="s13">
+    <div class="eyebrow">A few words to remember</div>
+    <h2>Open When You Need a Smile 💌</h2>
+    <div class="gift-row">
+        <button onclick="openNote(0)">When you're sad</button>
+        <button onclick="openNote(1)">When you doubt yourself</button>
+        <button onclick="openNote(2)">When you need hope</button>
+    </div>
+    <p id="noteMessage">Choose a note. There's something kind waiting for you.</p>
+    <div class="scene-number">13 / 15</div>
+</section>
+
+<section class="scene" id="s14">
+    <div class="eyebrow">One last wish before the finale</div>
+    <div class="emoji-art">💖🎂💖</div>
+    <h1>Keep Smiling, Hasnain</h1>
+    <p>I hope this little surprise brings a smile to your face and reminds you that your happiness matters.</p>
+    <div class="script">Today is your day. Enjoy every moment! ❤️</div>
+    <div class="scene-number">14 / 15</div>
+</section>
+
+<section class="scene" id="s15">
+    <div class="eyebrow">Made with love, just for you</div>
+    <div class="balloons">
+        <span class="balloon">🎈</span><span class="balloon">💖</span>
+        <span class="balloon">🎉</span><span class="balloon">🎈</span>
+    </div>
+    <div class="emoji-art">🌙💐🎂💐🌙</div>
+    <h1>Happy Birthday, Hasnain! ❤️</h1>
+    <p>May your life be filled with love, success, good health, and countless beautiful memories.</p>
+    <div class="script">Stay blessed. Stay wonderful. Always. 💖</div>
+    <button onclick="restartShow()">Watch Again ↻</button>
+    <div class="scene-number">15 / 15 · With love ❤️</div>
+</section>
+
+</main>
+
+<footer>Made with love ❤️ A little birthday surprise for Hasnain</footer>
 
 <script>
-// Change these filenames to match your actual photos.
-const photoFiles = [
- "photoes/photo1.jpg",
- "photoes/photo2.jpg",
- "photoes/photo3.jpg",
- "photoes/photo4.jpg",
- "photoes/photo5.jpg"
+const photos = [
+    { src: "photoes/photoes_1.jpeg", name: "Memory 1 ❤️" },
+    { src: "photoes/photoes_2.jpeg", name: "Memory 2 💖" },
+    { src: "photoes/photoes_3.jpeg", name: "Memory 3 💕" },
+    { src: "photoes/photoes_4.jpeg", name: "Memory 4 💗" },
+    { src: "photoes/photoes_5.jpeg", name: "Memory 5 💞" }
 ];
 
-const gallery = document.getElementById("gallery");
+const scenes = Array.from(document.querySelectorAll(".scene"));
+const music = document.getElementById("bgMusic");
+let currentScene = 0;
+let photoIndex = 0;
+let showStarted = false;
+let autoTimer = null;
+let musicEnabled = true;
 
-photoFiles.forEach((src,index)=>{
- const img = document.createElement("img");
- img.src = src;
- img.alt = "Birthday memory " + (index+1);
- img.loading = "lazy";
- img.onerror = () => {
-   img.style.display = "none";
- };
- gallery.appendChild(img);
+const gifts = [
+    "🎁 Your first gift: May happiness find you wherever you go. ❤️",
+    "💝 Your second gift: May your heart always be surrounded by kindness. 💖",
+    "🎀 Your third gift: May every dream you hold become a beautiful reality. ✨"
+];
+
+const starWishes = [
+    "⭐ May your biggest dreams become your happiest memories.",
+    "🌟 May you always find strength, peace, and reasons to smile.",
+    "✨ May your future shine brighter than this little star."
+];
+
+const notes = [
+    "When you're sad: Take a breath. This moment will pass, and brighter days are waiting. ❤️",
+    "When you doubt yourself: Remember how much you have already overcome. Believe in yourself. 💜",
+    "When you need hope: Even the smallest light can brighten the darkest night. Keep going. ✨"
+];
+
+function showScene(index) {
+    currentScene = index;
+    scenes.forEach((scene, i) => scene.classList.toggle("active", i === index));
+    document.getElementById("progressBar").style.width =
+        ((index + 1) / scenes.length * 100) + "%";
+}
+
+function startShow() {
+    showStarted = true;
+    music.play().then(() => {
+        document.getElementById("musicToggle").textContent = "🎵 Music: On";
+    }).catch(() => {
+        document.getElementById("musicToggle").textContent = "🎵 Tap for Music";
+    });
+
+    showScene(1);
+    createHearts(25);
+    startAutomaticScenes();
+}
+
+function startAutomaticScenes() {
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(function advance() {
+        if (currentScene < scenes.length - 1) {
+            showScene(currentScene + 1);
+            createHearts(10);
+            autoTimer = setTimeout(advance, 9000);
+        }
+    }, 9000);
+}
+
+function cutCake() {
+    document.getElementById("cakeText").textContent =
+        "🎉 Wish made! May your dreams come true, Hasnain! ❤️";
+    createHearts(35);
+    document.querySelector(".cake").textContent = "🍰";
+}
+
+function openGift(index) {
+    document.getElementById("wishMessage").textContent = gifts[index];
+    createHearts(10);
+}
+
+function nextPhoto() {
+    photoIndex = (photoIndex + 1) % photos.length;
+    const image = document.getElementById("memoryImage");
+    image.style.opacity = 0;
+
+    setTimeout(() => {
+        image.src = photos[photoIndex].src;
+        image.alt = photos[photoIndex].name;
+        document.getElementById("photoCaption").textContent = photos[photoIndex].name;
+        image.style.opacity = 1;
+    }, 300);
+}
+
+function starWish(index) {
+    document.getElementById("starMessage").textContent = starWishes[index];
+    createHearts(8);
+}
+
+function openNote(index) {
+    document.getElementById("noteMessage").textContent = notes[index];
+}
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play().then(() => {
+            document.getElementById("musicToggle").textContent = "🎵 Music: On";
+        }).catch(() => {
+            document.getElementById("musicToggle").textContent = "🎵 Try Music Again";
+        });
+    } else {
+        music.pause();
+        document.getElementById("musicToggle").textContent = "🔇 Music: Off";
+    }
+}
+
+function restartShow() {
+    clearTimeout(autoTimer);
+    photoIndex = 0;
+    currentScene = 0;
+    showStarted = false;
+    document.getElementById("memoryImage").src = photos[0].src;
+    document.getElementById("photoCaption").textContent = photos[0].name;
+    document.getElementById("cakeText").textContent =
+        "Close your eyes, make a wish, and let the magic begin.";
+    document.querySelector(".cake").textContent = "🎂";
+    document.getElementById("wishMessage").textContent =
+        "Every gift has a little love inside. 💖";
+    showScene(0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function createHearts(count) {
+    const emojis = ["❤️", "💖", "💕", "💗", "✨", "💜"];
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (14 + Math.random() * 22) + "px";
+        heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+        document.getElementById("particles").appendChild(heart);
+        setTimeout(() => heart.remove(), 9500);
+    }
+}
+
+function makeStars() {
+    const container = document.getElementById("stars");
+    for (let i = 0; i < 90; i++) {
+        const star = document.createElement("span");
+        star.className = "star";
+        star.textContent = "✦";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.fontSize = (5 + Math.random() * 10) + "px";
+        star.style.animationDelay = Math.random() * 3 + "s";
+        container.appendChild(star);
+    }
+}
+
+makeStars();
+
+setInterval(() => {
+    if (showStarted) createHearts(3);
+}, 3000);
+
+// Automatically rotate photos while the memory scene is visible.
+setInterval(() => {
+    if (currentScene === 6) nextPhoto();
+}, 4500);
+
+// Start the audio only after the visitor interacts with the start button.
+music.addEventListener("error", () => {
+    document.getElementById("musicToggle").textContent = "🎵 Music file not found";
 });
 
-const scenes = [
- "s1","s2","s3","s4","s5","s6","s7"
-];
-let currentScene = 0;
-let sceneTimer = null;
-let started = false;
-
-function startShow(){
- document.getElementById("intro").style.display = "none";
-
- const music = document.getElementById("bgMusic");
- music.volume = 0.65;
- music.play().then(()=>{
-   document.getElementById("musicStatus").textContent =
-    "🎵 Playing your birthday music";
- }).catch(()=>{
-   document.getElementById("musicStatus").textContent =
-    "Tap the music control below if playback is blocked.";
-   music.controls = true;
-   music.style.display = "block";
-   music.style.position = "fixed";
-   music.style.bottom = "10px";
-   music.style.left = "10px";
-   music.style.width = "90%";
-   music.style.zIndex = "20";
- });
-
- createBalloons();
- createHearts();
- currentScene = 0;
- showScene();
- started = true;
-}
-
-function showScene(){
- scenes.forEach(id=>{
-  document.getElementById(id).classList.remove("active");
- });
- if(currentScene >= scenes.length) return;
-
- const scene = document.getElementById(scenes[currentScene]);
- scene.classList.add("active");
-
- if(scenes[currentScene] === "s6"){
-  typeLetter();
- }
-
- currentScene++;
- if(currentScene < scenes.length){
-  sceneTimer = setTimeout(showScene, 6500);
- }
-}
-
-function cutCake(){
- document.getElementById("cakeMessage").innerHTML =
-  "🎉 Happy Birthday, Hasnain! ❤️<br>Your wish deserves to come true. ✨";
- createHearts();
-}
-
-function typeLetter(){
- const letter = document.getElementById("letter");
- if(letter.dataset.done) return;
- letter.dataset.done = "yes";
- const message =
-`Dear Hasnain ❤️
-
-May your smile always shine bright.
-May happiness follow you everywhere.
-May your dreams become beautiful realities.
-
-You deserve the sweetest moments,
-the kindest people,
-and all the happiness in the world.
-
-Keep smiling, keep shining.
-Happy Birthday! 🎂💖`;
- let i = 0;
- function type(){
-  if(i < message.length){
-   letter.textContent += message.charAt(i++);
-   setTimeout(type, 35);
-  }
- }
- type();
-}
-
-function createBalloons(){
- const emojis = ["🎈","🎈","💗","🎈","💕"];
- for(let i=0;i<18;i++){
-  const b = document.createElement("div");
-  b.className = "balloon";
-  b.textContent = emojis[i % emojis.length];
-  b.style.left = Math.random()*100 + "vw";
-  b.style.animationDelay = Math.random()*7 + "s";
-  b.style.animationDuration = (7+Math.random()*6) + "s";
-  document.body.appendChild(b);
- }
-}
-
-function createHearts(){
- const emojis = ["❤️","💖","💕","💗","✨"];
- for(let i=0;i<22;i++){
-  const h = document.createElement("span");
-  h.className = "heart";
-  h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-  h.style.left = Math.random()*100 + "vw";
-  h.style.fontSize = (15+Math.random()*22) + "px";
-  h.style.animationDelay = Math.random()*3 + "s";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),9000);
- }
-}
-
-function restartShow(){
- if(sceneTimer) clearTimeout(sceneTimer);
- currentScene = 0;
- document.getElementById("letter").textContent = "";
- delete document.getElementById("letter").dataset.done;
- showScene();
- createHearts();
-}
-
+// Check whether all photos can load and show a helpful fallback if a path is wrong.
+document.getElementById("memoryImage").addEventListener("error", function () {
+    this.alt = "Photo not found — check the filename in the photoes folder.";
+    document.getElementById("photoCaption").textContent =
+        "Please check that the photo filename and extension match your folder.";
+});
 </script>
 </body>
 </html>
