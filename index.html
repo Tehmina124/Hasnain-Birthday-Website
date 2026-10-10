@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,653 +6,587 @@
 <title>Dear Hasnain ❤️</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#f5d99d;
+  --lavender:#d6c5ff;
+  --pink:#ffb9d4;
+  --cream:#fff4e7;
 }
-
-:root {
-    --gold: #f5d99d;
-    --lavender: #d6c5ff;
-    --pink: #ffb6d5;
-    --night: #090a20;
+body{
+  min-height:100vh;
+  overflow:hidden;
+  color:white;
+  font-family:Georgia,"Times New Roman",serif;
+  background:radial-gradient(ellipse at top,#392653,#171329 60%,#090a18);
 }
-
-body {
-    min-height: 100vh;
-    overflow-x: hidden;
-    background: radial-gradient(circle at top, #29204f, #101127 50%, #070817);
-    color: #fff;
-    font-family: Georgia, "Times New Roman", serif;
+button{font:inherit;cursor:pointer}
+#stars,.petals{
+  position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0
 }
-
-#stars, #particles {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
+.star{
+  position:absolute;background:white;border-radius:50%;
+  animation:twinkle 2.5s infinite alternate;
 }
-
-.star {
-    position: absolute;
-    color: #fff3c8;
-    animation: twinkle 2s infinite alternate;
+@keyframes twinkle{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.4)}}
+#app{
+  position:relative;z-index:2;height:100dvh;
+  display:flex;align-items:center;justify-content:center;padding:18px
 }
-
-@keyframes twinkle {
-    from { opacity: .25; transform: scale(.7); }
-    to { opacity: 1; transform: scale(1.2); }
+.scene{
+  display:none;width:min(900px,100%);max-height:90dvh;
+  overflow-y:auto;text-align:center;padding:28px 20px 90px;
+  animation:appear .9s ease;
 }
-
-.heart {
-    position: fixed;
-    bottom: -50px;
-    z-index: 1;
-    pointer-events: none;
-    animation: floatUp linear forwards;
+.scene.active{display:block}
+@keyframes appear{
+  from{opacity:0;transform:translateY(18px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
-
-@keyframes floatUp {
-    to { transform: translateY(-115vh) rotate(35deg); opacity: 0; }
+.eyebrow{
+  color:var(--gold);letter-spacing:4px;text-transform:uppercase;
+  font:11px Arial,sans-serif;margin-bottom:20px
 }
-
-#app {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 14px;
+h1{
+  font-size:clamp(38px,8vw,76px);font-weight:normal;
+  line-height:1.08;color:var(--cream);
+  text-shadow:0 0 25px #ffb9d455
 }
-
-.scene {
-    width: min(850px, 100%);
-    min-height: 590px;
-    display: none;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 32px 20px;
-    border: 1px solid rgba(245,217,157,.32);
-    border-radius: 28px;
-    background: linear-gradient(145deg, rgba(39,31,72,.78), rgba(10,12,34,.84));
-    box-shadow: 0 0 55px rgba(185,128,255,.13), inset 0 0 30px rgba(255,255,255,.025);
-    backdrop-filter: blur(12px);
-    animation: appear .9s ease;
+h2{
+  font-size:clamp(29px,5vw,48px);font-weight:normal;
+  color:var(--gold);margin:12px 0 20px
 }
-
-.scene.active { display: flex; }
-
-@keyframes appear {
-    from { opacity: 0; transform: translateY(18px) scale(.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+p{
+  color:#f6eaf8;font-size:clamp(16px,2.5vw,20px);
+  line-height:1.8;margin:15px auto;max-width:620px
 }
-
-.eyebrow {
-    color: var(--gold);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font: 11px Arial, sans-serif;
-    margin-bottom: 22px;
+.script{font-style:italic;color:var(--pink)}
+.glow{
+  text-shadow:0 0 10px #ffb9d4,0 0 30px #d6c5ff
 }
-
-h1 {
-    font-size: clamp(35px, 7vw, 68px);
-    line-height: 1.15;
-    color: var(--gold);
-    text-shadow: 0 0 25px rgba(245,217,157,.28);
-    margin-bottom: 22px;
+.btn{
+  border:1px solid #f5d99d99;color:#fff7e8;
+  background:linear-gradient(135deg,#6f477a,#342548);
+  padding:13px 22px;border-radius:30px;
+  margin:8px;box-shadow:0 8px 25px #0003;
+  transition:.25s
 }
-
-h2 {
-    color: var(--lavender);
-    font-size: clamp(26px, 5vw, 43px);
-    margin-bottom: 20px;
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 25px #f5d99d44}
+.btn.gold{background:linear-gradient(135deg,#f5d99d,#c58cbb);color:#2a1732}
+.bottom-nav{
+  position:fixed;bottom:12px;left:0;right:0;z-index:20;
+  display:flex;justify-content:center;align-items:center;gap:8px;
+  padding:8px;flex-wrap:wrap
 }
-
-p {
-    max-width: 650px;
-    color: #f3eafa;
-    font-size: clamp(16px, 2.8vw, 20px);
-    line-height: 1.85;
+.navbtn{
+  color:#fff;border:1px solid #ffffff30;
+  background:#211a35dd;padding:10px 15px;border-radius:25px
 }
-
-.script {
-    color: var(--pink);
-    font-style: italic;
-    font-size: clamp(24px, 4vw, 37px);
-    margin: 18px 0;
+#counter{color:#f5d99d;font:12px Arial,sans-serif;letter-spacing:2px}
+.heart{
+  display:inline-block;color:#ff9fc9;
+  animation:heartbeat 1.2s infinite
 }
-
-button {
-    border: 1px solid rgba(245,217,157,.7);
-    color: #1b1531;
-    background: linear-gradient(120deg, #f5d99d, #ffbedc);
-    padding: 14px 27px;
-    border-radius: 40px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 28px;
-    box-shadow: 0 0 24px rgba(245,217,157,.18);
-    transition: .25s;
+@keyframes heartbeat{50%{transform:scale(1.22)}}
+.big-heart{font-size:clamp(65px,15vw,130px);margin:20px}
+.balloon-row{
+  display:flex;justify-content:center;gap:clamp(12px,4vw,38px);
+  margin:35px auto;flex-wrap:wrap
 }
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 32px rgba(255,182,213,.35);
+.balloon{
+  width:65px;height:83px;border-radius:50% 50% 46% 46%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;color:#2b1732;font-weight:bold;
+  position:relative;animation:float 2.6s ease-in-out infinite;
+  box-shadow:inset -9px -7px 12px #0002,inset 8px 8px 15px #ffffff55
 }
-
-.emoji-art {
-    font-size: clamp(55px, 12vw, 100px);
-    margin: 12px 0 20px;
-    filter: drop-shadow(0 0 20px rgba(255,182,213,.24));
+.balloon:after{
+  content:"";position:absolute;top:81px;height:48px;
+  width:1px;background:#ffffff70
 }
-
-.balloons {
-    display: flex;
-    gap: 20px;
-    margin: 18px 0;
-    justify-content: center;
+.balloon:nth-child(1){background:#ffb3d0;animation-delay:-.4s}
+.balloon:nth-child(2){background:#f4d38b;animation-delay:-1s}
+.balloon:nth-child(3){background:#c6b0ff;animation-delay:-.8s}
+.balloon:nth-child(4){background:#a5e5d8;animation-delay:-1.5s}
+@keyframes float{50%{transform:translateY(-17px) rotate(3deg)}}
+.cake-area{margin:28px auto;width:240px;position:relative;height:200px}
+.cake{
+  position:absolute;bottom:15px;left:20px;width:200px;height:85px;
+  background:linear-gradient(#ffcee1 0 20%,#b45d91 20% 35%,#f8c7d8 35% 100%);
+  border-radius:15px 15px 22px 22px;
+  box-shadow:0 13px 20px #0005
 }
-
-.balloon {
-    font-size: 48px;
-    animation: balloonFloat 2.5s ease-in-out infinite alternate;
+.cake:before{
+  content:"";position:absolute;left:0;right:0;top:-24px;height:45px;
+  background:#ffe5ec;border-radius:50%;
+  border-bottom:8px solid #e5a6c8
 }
-.balloon:nth-child(2) { animation-delay: .4s; }
-.balloon:nth-child(3) { animation-delay: .8s; }
-.balloon:nth-child(4) { animation-delay: 1.2s; }
-
-@keyframes balloonFloat {
-    from { transform: translateY(8px) rotate(-5deg); }
-    to { transform: translateY(-15px) rotate(5deg); }
+.cake:after{
+  content:"";position:absolute;left:0;right:0;bottom:16px;height:12px;
+  background:#b45d91
 }
-
-.cake {
-    font-size: 100px;
-    cursor: pointer;
-    animation: cakeGlow 2s infinite alternate;
+.candle{
+  position:absolute;z-index:3;top:54px;left:115px;width:10px;height:45px;
+  background:repeating-linear-gradient(45deg,#fff 0 5px,#df83a9 5px 10px)
 }
-@keyframes cakeGlow {
-    from { filter: drop-shadow(0 0 5px #ff9ecb); }
-    to { filter: drop-shadow(0 0 25px #f5d99d); }
+.flame{
+  position:absolute;top:-24px;left:-2px;width:14px;height:22px;
+  background:#ffcf70;border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);box-shadow:0 0 22px #ffc04d;
+  animation:flicker .35s infinite alternate
 }
-
-.photo-frame {
-    width: min(420px, 100%);
-    height: 310px;
-    margin: 10px auto 20px;
-    border: 3px solid var(--gold);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 35px rgba(255,182,213,.2);
-    background: #17142e;
+@keyframes flicker{to{transform:rotate(-35deg) scale(.8)}}
+.cake.cut .cake{clip-path:polygon(0 0,100% 0,100% 100%,58% 100%,50% 70%,40% 100%,0 100%)}
+.cake.cut .flame{display:none}
+.gift-row{display:flex;justify-content:center;gap:22px;margin:30px;flex-wrap:wrap}
+.gift{
+  width:90px;height:80px;position:relative;
+  background:linear-gradient(135deg,#e98fb9,#a77ad8);
+  border-radius:5px;box-shadow:0 10px 25px #0004;
+  animation:bob 2s infinite ease-in-out
 }
-
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: opacity .5s;
+.gift:before{content:"";position:absolute;left:36px;top:0;bottom:0;width:17px;background:#ffe6a9}
+.gift:after{
+  content:"";position:absolute;top:-15px;left:-6px;width:102px;height:20px;
+  background:#f8d9a0;border-radius:5px
 }
-
-.photo-caption {
-    color: var(--gold);
-    font-style: italic;
+.gift:nth-child(2){animation-delay:-.7s;background:#82bfb6}
+.gift:nth-child(3){animation-delay:-1.2s;background:#a9a1ee}
+@keyframes bob{50%{transform:translateY(-9px) rotate(2deg)}}
+.rose{font-size:40px;display:inline-block;margin:8px;animation:roseFloat 3s infinite}
+@keyframes roseFloat{50%{transform:translateY(-9px) rotate(5deg)}}
+.letter{
+  max-width:620px;margin:25px auto;padding:28px 24px;
+  background:#fff2e4;color:#52364d;border-radius:5px;
+  box-shadow:0 15px 40px #0005;transform:rotate(-1deg)
 }
-
-.letter {
-    text-align: left;
-    max-width: 600px;
-    padding: 25px;
-    line-height: 2;
-    border-left: 2px solid var(--gold);
-    background: rgba(255,255,255,.035);
-    border-radius: 0 15px 15px 0;
+.letter p{color:#52364d}
+.photo-frame{
+  width:min(340px,82vw);height:min(390px,48vh);
+  margin:20px auto;border:8px solid #f7dfbd;
+  border-radius:8px;overflow:hidden;box-shadow:0 15px 45px #0007;
+  background:#31223c;display:flex;align-items:center;justify-content:center
 }
-
-.gift-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin: 20px 0;
+.photo-frame img{width:100%;height:100%;object-fit:cover}
+.photo-caption{color:var(--gold);font-style:italic}
+.jar{font-size:100px;filter:drop-shadow(0 0 22px #e4a6ff55)}
+.note{
+  max-width:530px;margin:20px auto;padding:20px;
+  border:1px solid #f5d99d66;background:#ffffff0b;border-radius:15px
 }
-
-.gift {
-    font-size: 65px;
-    cursor: pointer;
-    transition: .3s;
+.constellation{font-size:clamp(35px,8vw,70px);letter-spacing:8px;color:#f5d99d}
+.moon{
+  width:110px;height:110px;margin:25px auto;border-radius:50%;
+  background:#fff1c8;box-shadow:0 0 50px #f5d99d77;position:relative
 }
-.gift:hover { transform: translateY(-8px) rotate(-8deg); }
-
-#wishMessage {
-    min-height: 50px;
-    margin-top: 15px;
-    color: var(--pink);
-    font-style: italic;
+.moon:after{
+  content:"";position:absolute;left:30px;top:-8px;width:100px;height:100px;
+  background:#201932;border-radius:50%
 }
-
-.progress {
-    position: fixed;
-    z-index: 5;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: rgba(255,255,255,.1);
+.promise{
+  max-width:600px;margin:25px auto;padding:25px;
+  border:1px solid #d6c5ff77;border-radius:20px;
+  background:linear-gradient(145deg,#ffffff0e,#e4b2ff0b)
 }
-#progressBar {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, #d6c5ff, #f5d99d, #ffb6d5);
-    transition: width .5s;
+.final-title{font-size:clamp(40px,9vw,90px);color:#f5d99d}
+.crown{font-size:55px;filter:drop-shadow(0 0 15px #f5d99d)}
+.confetti{
+  position:fixed;top:-15px;z-index:5;pointer-events:none;
+  animation:fall linear forwards
 }
-
-.music-toggle {
-    position: fixed;
-    right: 14px;
-    top: 16px;
-    z-index: 10;
-    margin: 0;
-    padding: 10px 14px;
-    font-size: 13px;
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+.petalfall{
+  position:fixed;top:-25px;z-index:1;pointer-events:none;
+  animation:petalFall 9s linear forwards
 }
-
-.scene-number {
-    color: #b9acd8;
-    font: 11px Arial, sans-serif;
-    letter-spacing: 2px;
-    margin-top: 25px;
+@keyframes petalFall{
+  to{transform:translateY(110vh) rotate(500deg) translateX(80px);opacity:0}
 }
-
-footer {
-    position: fixed;
-    bottom: 8px;
-    left: 0;
-    width: 100%;
-    z-index: 3;
-    text-align: center;
-    color: rgba(255,255,255,.55);
-    font: 11px Arial, sans-serif;
-    pointer-events: none;
+#musicBtn{
+  position:fixed;top:12px;right:12px;z-index:30;
+  background:#241a36cc;border:1px solid #f5d99d66;
+  color:#f5d99d;padding:9px 13px;border-radius:24px
 }
-
-@media(max-width: 520px) {
-    .scene {
-        min-height: 570px;
-        padding: 28px 16px;
-        border-radius: 20px;
-    }
-    .photo-frame { height: 260px; }
-    .letter { padding: 17px; }
-    .music-toggle { top: 8px; right: 8px; }
+@media(max-height:650px){
+  .scene{padding-top:18px;padding-bottom:75px}
+  h1{font-size:42px}
+  .cake-area{transform:scale(.8);margin:0 auto}
+  p{line-height:1.55}
 }
 </style>
 </head>
 
 <body>
 <div id="stars"></div>
-<div id="particles"></div>
+<div class="petals" id="petals"></div>
 
-<div class="progress"><div id="progressBar"></div></div>
-
-<button class="music-toggle" id="musicToggle" onclick="toggleMusic()">🎵 Music: On</button>
-
-<audio id="bgMusic" loop preload="auto">
-    <source src="music/birthday.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgMusic" src="music/birthday.mp3" loop preload="auto"></audio>
+<button id="musicBtn" onclick="toggleMusic()">♫ Music: Off</button>
 
 <main id="app">
 
-<section class="scene active" id="s1">
-    <div class="eyebrow">A little surprise made with love</div>
-    <div class="emoji-art">🌙✨</div>
-    <h1>Dear Hasnain ❤️</h1>
-    <p>Some people make the world more beautiful just by being in it...</p>
-    <div class="script">And you are one of them.</div>
-    <p>Ready for your little surprise?</p>
-    <button onclick="startShow()">Open Your Surprise ❤️</button>
-    <div class="scene-number">01 / 15</div>
+<section class="scene active" data-scene="0">
+  <div class="eyebrow">A little world made just for you</div>
+  <div class="big-heart heart">♥</div>
+  <h1 class="glow">Dear Hasnain</h1>
+  <p class="script">Some people make the world more beautiful just by being in it.</p>
+  <p>Today, this little surprise is all yours. ❤️</p>
+  <button class="btn gold" onclick="startSurprise()">Open Your Surprise ❤️</button>
 </section>
 
-<section class="scene" id="s2">
-    <div class="eyebrow">Tonight is all about you</div>
-    <div class="balloons">
-        <span class="balloon">🎈</span><span class="balloon">💜</span>
-        <span class="balloon">🎈</span><span class="balloon">💖</span>
-    </div>
-    <h1>Happy Birthday!</h1>
-    <p>May your day be filled with peace, laughter, love, and all the beautiful things your heart deserves.</p>
-    <div class="script">You deserve a thousand reasons to smile.</div>
-    <div class="scene-number">02 / 15</div>
+<section class="scene" data-scene="1">
+  <div class="eyebrow">A special day • A special person</div>
+  <h1>Happy Birthday</h1>
+  <h2 class="glow">Hasnain ❤️</h2>
+  <p>May your smile always stay bright, your heart stay peaceful, and your dreams find their way to you.</p>
+  <div class="big-heart">🎂</div>
+  <p class="script">You deserve all the beautiful things life has to offer.</p>
 </section>
 
-<section class="scene" id="s3">
-    <div class="eyebrow">A wish from my heart</div>
-    <div class="emoji-art">🌟</div>
-    <h2>My Birthday Wish for You</h2>
-    <p>May every new morning bring you hope, every challenge make you stronger, and every dream bring you closer to happiness.</p>
-    <p class="script">May life always be kind to you, Hasnain. ❤️</p>
-    <div class="scene-number">03 / 15</div>
+<section class="scene" data-scene="2">
+  <div class="eyebrow">Four little words for you</div>
+  <h2>Just for you…</h2>
+  <div class="balloon-row">
+    <div class="balloon">H</div><div class="balloon">A</div>
+    <div class="balloon">P</div><div class="balloon">Y</div>
+  </div>
+  <p class="script glow">Happiness • Love • Smiles • You</p>
+  <p>May every little wish in your heart come true.</p>
 </section>
 
-<section class="scene" id="s4">
-    <div class="eyebrow">Make a beautiful wish</div>
-    <div class="emoji-art">🕯️🎂🕯️</div>
-    <h2>Your Birthday Cake</h2>
-    <div class="cake" onclick="cutCake()">🎂</div>
-    <p id="cakeText">Close your eyes, make a wish, and let the magic begin.</p>
-    <div class="scene-number">04 / 15</div>
+<section class="scene" data-scene="3">
+  <div class="eyebrow">Make a wish, birthday boy</div>
+  <h2>Your Birthday Cake 🎂</h2>
+  <div class="cake-area" id="cakeArea">
+    <div class="cake"><div class="candle"><div class="flame"></div></div></div>
+  </div>
+  <p id="cakeText">Close your eyes and make your sweetest wish.</p>
+  <button class="btn gold" onclick="cutCake()">Cut the Cake 🎂</button>
 </section>
 
-<section class="scene" id="s5">
-    <div class="eyebrow">A little birthday magic</div>
-    <div class="emoji-art">🎉🎈🎊</div>
-    <h1>Make a Wish!</h1>
-    <p>I hope the universe hears every silent prayer in your heart and brings you more happiness than you can imagine.</p>
-    <div class="script">Keep shining, birthday star. ✨</div>
-    <div class="scene-number">05 / 15</div>
+<section class="scene" data-scene="4">
+  <div class="eyebrow">Little surprises, wrapped with love</div>
+  <h2>Something for you 🎁</h2>
+  <div class="gift-row"><div class="gift"></div><div class="gift"></div><div class="gift"></div></div>
+  <p id="giftText">Every gift holds a little happiness.</p>
+  <button class="btn gold" onclick="openGifts()">Open Your Gifts 🎁</button>
 </section>
 
-<section class="scene" id="s6">
-    <div class="eyebrow">Little surprises for you</div>
-    <h2>Open Your Gifts 🎁</h2>
-    <p>Choose a gift to reveal a little message.</p>
-    <div class="gift-row">
-        <span class="gift" onclick="openGift(0)">🎁</span>
-        <span class="gift" onclick="openGift(1)">💝</span>
-        <span class="gift" onclick="openGift(2)">🎀</span>
-    </div>
-    <p id="wishMessage">Every gift has a little love inside. 💖</p>
-    <div class="scene-number">06 / 15</div>
+<section class="scene" data-scene="5">
+  <div class="eyebrow">A garden of affection</div>
+  <h2>Roses for you 🌹</h2>
+  <div>
+    <span class="rose">🌹</span><span class="rose">🌷</span>
+    <span class="rose">🌹</span><span class="rose">🌸</span><span class="rose">🌹</span>
+  </div>
+  <p class="script">If every rose could carry one kind thought, this garden would never be enough.</p>
+  <p>May your life always bloom with love, peace, and joy.</p>
 </section>
 
-<section class="scene" id="s7">
-    <div class="eyebrow">Little moments, lovely memories</div>
-    <h2>Our Memory Gallery 📸</h2>
-    <div class="photo-frame">
-        <img id="memoryImage" src="photoes/photoes_1.jpeg" alt="A special memory">
-    </div>
-    <p class="photo-caption" id="photoCaption">A memory to keep close to the heart ❤️</p>
-    <button onclick="nextPhoto()">Next Memory 💕</button>
-    <div class="scene-number">07 / 15</div>
+<section class="scene" data-scene="6">
+  <div class="eyebrow">A little letter, from the heart</div>
+  <h2>Just for you 💌</h2>
+  <div class="letter">
+    <p>Dear Hasnain,</p>
+    <p>On your special day, I wish you a heart full of peace, a life full of laughter, and countless reasons to smile.</p>
+    <p>May the beautiful things you give to this world find their way back to you.</p>
+    <p class="script">You are special, today and always. ❤️</p>
+    <p>With lots of love 💗</p>
+  </div>
 </section>
 
-<section class="scene" id="s8">
-    <div class="eyebrow">From the heart</div>
-    <h2>A Little Letter for You 💌</h2>
-    <div class="letter">
-        Dear Hasnain,<br><br>
-        On your special day, I wish you a life full of peace, success, and endless smiles. Never forget how special you are and how much happiness you bring into this world.<br><br>
-        May your dreams come true, your heart stay gentle, and your future shine brighter than the stars.<br><br>
-        <span style="color:#f5d99d">With lots of love, today and always. ❤️</span>
-    </div>
-    <div class="scene-number">08 / 15</div>
+<section class="scene" data-scene="7">
+  <div class="eyebrow">Little moments, lovely memories</div>
+  <h2>Our Memory Corner 📸</h2>
+  <div class="photo-frame">
+    <img id="memoryPhoto" src="photoes/photoes_1.jpeg" alt="Birthday memory"
+      onerror="this.style.display='none';document.getElementById('photoFallback').style.display='block'">
+    <div id="photoFallback" style="display:none;padding:20px;color:#f5d99d">Add your pictures in the photoes folder ❤️</div>
+  </div>
+  <div class="photo-caption" id="photoCaption">A little memory to keep close ❤️</div>
+  <button class="btn" onclick="previousPhoto()">← Previous</button>
+  <button class="btn gold" onclick="nextPhoto()">Next Memory →</button>
 </section>
 
-<section class="scene" id="s9">
-    <div class="eyebrow">A garden of good wishes</div>
-    <div class="emoji-art">🌹🌷🌹</div>
-    <h2>A Rose for You</h2>
-    <p>If every rose could carry a wish, I would send you a garden full of happiness, beautiful memories, and wonderful days ahead.</p>
-    <div class="script">You deserve all things beautiful. 🌹</div>
-    <div class="scene-number">09 / 15</div>
+<section class="scene" data-scene="8">
+  <div class="eyebrow">A jar full of tiny wishes</div>
+  <h2>Your Wish Jar ✨</h2>
+  <div class="jar">🏺</div>
+  <div class="note">
+    <p id="jarWish" class="script">May every new morning bring you a reason to smile.</p>
+  </div>
+  <button class="btn gold" onclick="newWish()">Pick Another Wish ✨</button>
 </section>
 
-<section class="scene" id="s10">
-    <div class="eyebrow">A tiny reminder</div>
-    <div class="emoji-art">💜</div>
-    <h2>Never Forget...</h2>
-    <p>You are capable of wonderful things. Be proud of how far you have come, trust your journey, and never stop believing in yourself.</p>
-    <div class="script">Your best chapters are still ahead. ✨</div>
-    <div class="scene-number">10 / 15</div>
+<section class="scene" data-scene="9">
+  <div class="eyebrow">Read this whenever you need it</div>
+  <h2>Open When… 💌</h2>
+  <div class="note">
+    <button class="btn" onclick="openNote(0)">When you feel sad</button>
+    <button class="btn" onclick="openNote(1)">When you need a smile</button>
+    <button class="btn" onclick="openNote(2)">When you feel tired</button>
+    <p id="openNoteText" class="script">Choose a little note above. ❤️</p>
+  </div>
 </section>
 
-<section class="scene" id="s11">
-    <div class="eyebrow">A wish just for you</div>
-    <h2>Pick a Little Star ⭐</h2>
-    <p>Tap a star and see what it has to say.</p>
-    <div class="gift-row">
-        <span class="gift" onclick="starWish(0)">⭐</span>
-        <span class="gift" onclick="starWish(1)">🌟</span>
-        <span class="gift" onclick="starWish(2)">✨</span>
-    </div>
-    <p id="starMessage">Your little piece of birthday magic is waiting.</p>
-    <div class="scene-number">11 / 15</div>
+<section class="scene" data-scene="10">
+  <div class="eyebrow">Even the stars are celebrating you</div>
+  <h2>Written in the Stars ✨</h2>
+  <div class="constellation">✦ · ✧ · ★<br>♡<br>★ · ✧ · ✦</div>
+  <p>Some people make ordinary moments feel magical.</p>
+  <p class="script">Tonight, let the stars remind you how wonderful you are.</p>
 </section>
 
-<section class="scene" id="s12">
-    <div class="eyebrow">Under the same moon</div>
-    <div class="emoji-art">🌙✨</div>
-    <h2>Moonlight Wishes</h2>
-    <p>May your nights be peaceful, your mornings hopeful, and your heart always find reasons to be grateful.</p>
-    <div class="script">Some wishes are too precious for words. 💫</div>
-    <div class="scene-number">12 / 15</div>
+<section class="scene" data-scene="11">
+  <div class="eyebrow">A peaceful little night</div>
+  <h2>Under the Moonlight 🌙</h2>
+  <div class="moon"></div>
+  <p>May your nights be peaceful, your mornings hopeful, and your dreams beautiful.</p>
+  <p class="script">Even the quiet sky feels brighter on your special day.</p>
 </section>
 
-<section class="scene" id="s13">
-    <div class="eyebrow">A few words to remember</div>
-    <h2>Open When You Need a Smile 💌</h2>
-    <div class="gift-row">
-        <button onclick="openNote(0)">When you're sad</button>
-        <button onclick="openNote(1)">When you doubt yourself</button>
-        <button onclick="openNote(2)">When you need hope</button>
-    </div>
-    <p id="noteMessage">Choose a note. There's something kind waiting for you.</p>
-    <div class="scene-number">13 / 15</div>
+<section class="scene" data-scene="12">
+  <div class="eyebrow">A little promise</div>
+  <h2>For Your New Year of Life 💜</h2>
+  <div class="promise">
+    <p>I hope you always remember your worth.</p>
+    <p>I hope you keep believing in your dreams.</p>
+    <p>I hope you find laughter on difficult days and peace in busy moments.</p>
+    <p class="script">And I hope life gives you a thousand beautiful reasons to smile.</p>
+  </div>
 </section>
 
-<section class="scene" id="s14">
-    <div class="eyebrow">One last wish before the finale</div>
-    <div class="emoji-art">💖🎂💖</div>
-    <h1>Keep Smiling, Hasnain</h1>
-    <p>I hope this little surprise brings a smile to your face and reminds you that your happiness matters.</p>
-    <div class="script">Today is your day. Enjoy every moment! ❤️</div>
-    <div class="scene-number">14 / 15</div>
+<section class="scene" data-scene="13">
+  <div class="eyebrow">One last birthday wish</div>
+  <h1 class="glow">Stay Happy</h1>
+  <h2>Always, Hasnain ❤️</h2>
+  <p>May this year bring you closer to everything your heart has been wishing for.</p>
+  <div class="big-heart heart">💖</div>
+  <p class="script">Keep shining. Keep smiling. Keep being you.</p>
 </section>
 
-<section class="scene" id="s15">
-    <div class="eyebrow">Made with love, just for you</div>
-    <div class="balloons">
-        <span class="balloon">🎈</span><span class="balloon">💖</span>
-        <span class="balloon">🎉</span><span class="balloon">🎈</span>
-    </div>
-    <div class="emoji-art">🌙💐🎂💐🌙</div>
-    <h1>Happy Birthday, Hasnain! ❤️</h1>
-    <p>May your life be filled with love, success, good health, and countless beautiful memories.</p>
-    <div class="script">Stay blessed. Stay wonderful. Always. 💖</div>
-    <button onclick="restartShow()">Watch Again ↻</button>
-    <div class="scene-number">15 / 15 · With love ❤️</div>
+<section class="scene" data-scene="14">
+  <div class="crown">♛</div>
+  <div class="eyebrow">Made with love • Just for you</div>
+  <h1 class="final-title glow">HASNAIN DEAR</h1>
+  <h2>Happy Birthday, My Favourite Person ❤️</h2>
+  <div class="big-heart heart">💖</div>
+  <p>May your life be filled with love, laughter, success, and countless beautiful memories.</p>
+  <p class="script">Today is your day. Keep smiling, birthday boy. ✨</p>
+  <button class="btn gold" onclick="replay()">Experience It Again ❤️</button>
 </section>
 
 </main>
 
-<footer>Made with love ❤️ A little birthday surprise for Hasnain</footer>
+<nav class="bottom-nav">
+  <button class="navbtn" onclick="previousScene()">← Back</button>
+  <span id="counter">01 / 15</span>
+  <button class="navbtn" onclick="nextScene()">Next →</button>
+</nav>
 
 <script>
-const photos = [
-    { src: "photoes/photoes_1.jpeg", name: "Memory 1 ❤️" },
-    { src: "photoes/photoes_2.jpeg", name: "Memory 2 💖" },
-    { src: "photoes/photoes_3.jpeg", name: "Memory 3 💕" },
-    { src: "photoes/photoes_4.jpeg", name: "Memory 4 💗" },
-    { src: "photoes/photoes_5.jpeg", name: "Memory 5 💞" }
-];
-
-const scenes = Array.from(document.querySelectorAll(".scene"));
-const music = document.getElementById("bgMusic");
+const scenes = [...document.querySelectorAll(".scene")];
 let currentScene = 0;
+let musicPlaying = false;
 let photoIndex = 0;
-let showStarted = false;
 let autoTimer = null;
-let musicEnabled = true;
 
-const gifts = [
-    "🎁 Your first gift: May happiness find you wherever you go. ❤️",
-    "💝 Your second gift: May your heart always be surrounded by kindness. 💖",
-    "🎀 Your third gift: May every dream you hold become a beautiful reality. ✨"
+const photoPaths = [
+  "photoes/photoes_1.jpeg",
+  "photoes/photoes_2.jpeg",
+  "photoes/photoes_3.jpeg",
+  "photoes/photoes_4.jpeg",
+  "photoes/photoes_5.jpeg"
 ];
 
-const starWishes = [
-    "⭐ May your biggest dreams become your happiest memories.",
-    "🌟 May you always find strength, peace, and reasons to smile.",
-    "✨ May your future shine brighter than this little star."
+const photoCaptions = [
+  "A little memory to keep close ❤️",
+  "A moment worth remembering 💗",
+  "A little happiness captured forever ✨",
+  "Some memories make us smile 🌸",
+  "May beautiful moments keep finding you 💖"
+];
+
+const wishes = [
+  "May every new morning bring you a reason to smile.",
+  "May your heart always find peace and happiness.",
+  "May your dreams grow bigger and come true.",
+  "May you always be surrounded by genuine love.",
+  "May every difficult day lead to something beautiful.",
+  "May this new year of life be your happiest one yet."
 ];
 
 const notes = [
-    "When you're sad: Take a breath. This moment will pass, and brighter days are waiting. ❤️",
-    "When you doubt yourself: Remember how much you have already overcome. Believe in yourself. 💜",
-    "When you need hope: Even the smallest light can brighten the darkest night. Keep going. ✨"
+  "If today feels heavy, take a breath. You deserve gentleness, rest, and brighter days. ❤️",
+  "Remember that your smile can make an ordinary day feel special. Keep smiling! 😊",
+  "You do not have to do everything at once. Rest, take your time, and believe in yourself. 💜"
 ];
 
 function showScene(index) {
-    currentScene = index;
-    scenes.forEach((scene, i) => scene.classList.toggle("active", i === index));
-    document.getElementById("progressBar").style.width =
-        ((index + 1) / scenes.length * 100) + "%";
+  currentScene = Math.max(0, Math.min(index, scenes.length - 1));
+  scenes.forEach((scene, i) => scene.classList.toggle("active", i === currentScene));
+  document.getElementById("counter").textContent =
+    String(currentScene + 1).padStart(2, "0") + " / " + String(scenes.length).padStart(2, "0");
+
+  if (currentScene === 14) celebrate();
 }
 
-function startShow() {
-    showStarted = true;
-    music.play().then(() => {
-        document.getElementById("musicToggle").textContent = "🎵 Music: On";
-    }).catch(() => {
-        document.getElementById("musicToggle").textContent = "🎵 Tap for Music";
-    });
-
-    showScene(1);
-    createHearts(25);
-    startAutomaticScenes();
+function nextScene() {
+  if (currentScene < scenes.length - 1) showScene(currentScene + 1);
+  else replay();
 }
 
-function startAutomaticScenes() {
-    clearTimeout(autoTimer);
-    autoTimer = setTimeout(function advance() {
-        if (currentScene < scenes.length - 1) {
-            showScene(currentScene + 1);
-            createHearts(10);
-            autoTimer = setTimeout(advance, 9000);
-        }
-    }, 9000);
+function previousScene() {
+  if (currentScene > 0) showScene(currentScene - 1);
 }
 
-function cutCake() {
-    document.getElementById("cakeText").textContent =
-        "🎉 Wish made! May your dreams come true, Hasnain! ❤️";
-    createHearts(35);
-    document.querySelector(".cake").textContent = "🍰";
-}
-
-function openGift(index) {
-    document.getElementById("wishMessage").textContent = gifts[index];
-    createHearts(10);
-}
-
-function nextPhoto() {
-    photoIndex = (photoIndex + 1) % photos.length;
-    const image = document.getElementById("memoryImage");
-    image.style.opacity = 0;
-
-    setTimeout(() => {
-        image.src = photos[photoIndex].src;
-        image.alt = photos[photoIndex].name;
-        document.getElementById("photoCaption").textContent = photos[photoIndex].name;
-        image.style.opacity = 1;
-    }, 300);
-}
-
-function starWish(index) {
-    document.getElementById("starMessage").textContent = starWishes[index];
-    createHearts(8);
-}
-
-function openNote(index) {
-    document.getElementById("noteMessage").textContent = notes[index];
+function startSurprise() {
+  const music = document.getElementById("bgMusic");
+  music.play().then(() => {
+    musicPlaying = true;
+    updateMusicButton();
+  }).catch(() => {
+    document.getElementById("musicBtn").textContent = "♫ Tap for Music";
+  });
+  showScene(1);
+  createPetals(18);
 }
 
 function toggleMusic() {
-    if (music.paused) {
-        music.play().then(() => {
-            document.getElementById("musicToggle").textContent = "🎵 Music: On";
-        }).catch(() => {
-            document.getElementById("musicToggle").textContent = "🎵 Try Music Again";
-        });
-    } else {
-        music.pause();
-        document.getElementById("musicToggle").textContent = "🔇 Music: Off";
-    }
+  const music = document.getElementById("bgMusic");
+  if (musicPlaying) {
+    music.pause();
+    musicPlaying = false;
+  } else {
+    music.play().then(() => {
+      musicPlaying = true;
+      updateMusicButton();
+    }).catch(() => {
+      document.getElementById("musicBtn").textContent = "♫ Tap Again";
+    });
+  }
+  updateMusicButton();
 }
 
-function restartShow() {
-    clearTimeout(autoTimer);
-    photoIndex = 0;
-    currentScene = 0;
-    showStarted = false;
-    document.getElementById("memoryImage").src = photos[0].src;
-    document.getElementById("photoCaption").textContent = photos[0].name;
-    document.getElementById("cakeText").textContent =
-        "Close your eyes, make a wish, and let the magic begin.";
-    document.querySelector(".cake").textContent = "🎂";
-    document.getElementById("wishMessage").textContent =
-        "Every gift has a little love inside. 💖";
-    showScene(0);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+function updateMusicButton() {
+  document.getElementById("musicBtn").textContent =
+    musicPlaying ? "♫ Music: On" : "♫ Music: Off";
 }
 
-function createHearts(count) {
-    const emojis = ["❤️", "💖", "💕", "💗", "✨", "💜"];
-    for (let i = 0; i < count; i++) {
-        const heart = document.createElement("span");
-        heart.className = "heart";
-        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (14 + Math.random() * 22) + "px";
-        heart.style.animationDuration = (4 + Math.random() * 5) + "s";
-        document.getElementById("particles").appendChild(heart);
-        setTimeout(() => heart.remove(), 9500);
-    }
+function cutCake() {
+  document.querySelector("#cakeArea .cake").classList.add("cut");
+  document.getElementById("cakeText").textContent =
+    "Cake cut! 🎂 May your sweetest wishes come true, Hasnain! ❤️";
+  confetti(45);
 }
 
-function makeStars() {
-    const container = document.getElementById("stars");
-    for (let i = 0; i < 90; i++) {
-        const star = document.createElement("span");
-        star.className = "star";
-        star.textContent = "✦";
-        star.style.left = Math.random() * 100 + "%";
-        star.style.top = Math.random() * 100 + "%";
-        star.style.fontSize = (5 + Math.random() * 10) + "px";
-        star.style.animationDelay = Math.random() * 3 + "s";
-        container.appendChild(star);
-    }
+function openGifts() {
+  document.getElementById("giftText").textContent =
+    "Surprise! 🎁 Your gifts are filled with smiles, happiness, and lots of love. 💖";
+  confetti(30);
 }
 
-makeStars();
+function nextPhoto() {
+  photoIndex = (photoIndex + 1) % photoPaths.length;
+  updatePhoto();
+}
 
+function previousPhoto() {
+  photoIndex = (photoIndex - 1 + photoPaths.length) % photoPaths.length;
+  updatePhoto();
+}
+
+function updatePhoto() {
+  const img = document.getElementById("memoryPhoto");
+  const fallback = document.getElementById("photoFallback");
+  img.style.display = "block";
+  fallback.style.display = "none";
+  img.src = photoPaths[photoIndex];
+  document.getElementById("photoCaption").textContent = photoCaptions[photoIndex];
+}
+
+function newWish() {
+  document.getElementById("jarWish").textContent =
+    wishes[Math.floor(Math.random() * wishes.length)];
+  createPetals(8);
+}
+
+function openNote(index) {
+  document.getElementById("openNoteText").textContent = notes[index];
+}
+
+function confetti(count = 40) {
+  const colors = ["#f5d99d", "#ffb9d4", "#d6c5ff", "#a5e5d8", "#ffffff"];
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.width = (5 + Math.random() * 7) + "px";
+    piece.style.height = (8 + Math.random() * 10) + "px";
+    piece.style.animationDuration = (3 + Math.random() * 4) + "s";
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 7500);
+  }
+}
+
+function createPetals(count = 12) {
+  const emojis = ["🌸", "🌹", "💗", "✨"];
+  for (let i = 0; i < count; i++) {
+    const petal = document.createElement("span");
+    petal.className = "petalfall";
+    petal.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = (12 + Math.random() * 20) + "px";
+    petal.style.animationDuration = (5 + Math.random() * 7) + "s";
+    document.getElementById("petals").appendChild(petal);
+    setTimeout(() => petal.remove(), 12500);
+  }
+}
+
+function celebrate() {
+  confetti(80);
+  createPetals(25);
+}
+
+function replay() {
+  clearTimeout(autoTimer);
+  showScene(0);
+  photoIndex = 0;
+  updatePhoto();
+  document.querySelector("#cakeArea .cake").classList.remove("cut");
+  document.getElementById("cakeText").textContent =
+    "Close your eyes and make your sweetest wish.";
+  document.getElementById("giftText").textContent =
+    "Every gift holds a little happiness.";
+  document.getElementById("jarWish").textContent = wishes[0];
+  document.getElementById("openNoteText").textContent =
+    "Choose a little note above. ❤️";
+}
+
+function createStars() {
+  const holder = document.getElementById("stars");
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.width = (1 + Math.random() * 3) + "px";
+    star.style.height = star.style.width;
+    star.style.animationDelay = Math.random() * 3 + "s";
+    holder.appendChild(star);
+  }
+}
+
+createStars();
 setInterval(() => {
-    if (showStarted) createHearts(3);
-}, 3000);
+  if (Math.random() > .5) createPetals(1);
+}, 1800);
 
-// Automatically rotate photos while the memory scene is visible.
-setInterval(() => {
-    if (currentScene === 6) nextPhoto();
-}, 4500);
-
-// Start the audio only after the visitor interacts with the start button.
-music.addEventListener("error", () => {
-    document.getElementById("musicToggle").textContent = "🎵 Music file not found";
-});
-
-// Check whether all photos can load and show a helpful fallback if a path is wrong.
-document.getElementById("memoryImage").addEventListener("error", function () {
-    this.alt = "Photo not found — check the filename in the photoes folder.";
-    document.getElementById("photoCaption").textContent =
-        "Please check that the photo filename and extension match your folder.";
+// Keyboard navigation
+document.addEventListener("keydown", event => {
+  if (event.key === "ArrowRight") nextScene();
+  if (event.key === "ArrowLeft") previousScene();
 });
 </script>
 </body>
