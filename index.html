@@ -160,8 +160,9 @@ button.secondary{background:#ffffff0b;color:#fff;border-color:#ffffff50}
 <div id="effects"></div>
 <div class="progress" id="progress"></div>
 
-<audio id="bgMusic" loop preload="auto">
-  <source src="./music/birthday.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="music/birthday.mp3" type="audio/mpeg">
+  Your browser does not support audio playback.
 </audio>
 
 <button id="musicControl" onclick="toggleMusic()">🔇 Music: Off · Tap to Play</button>
@@ -410,10 +411,18 @@ const notes = [
 const music = document.getElementById("bgMusic");
 const musicButton = document.getElementById("musicControl");
 
-// Show a useful button label if the MP3 is missing or cannot be decoded.
+// Helpful status if the MP3 path is missing or the file cannot be decoded.
 music.addEventListener("error", () => {
-  console.error("Could not load music/birthday.mp3. Check that the MP3 exists in the music folder.");
-  musicButton.textContent = "⚠️ Music file not found";
+  console.error("Music could not load. Make sure music/birthday.mp3 exists in your website files.");
+  musicButton.textContent = "⚠️ Check birthday.mp3";
+});
+
+music.addEventListener("playing", () => {
+  musicButton.textContent = "🎵 Music: On · Tap to Turn Off";
+});
+
+music.addEventListener("pause", () => {
+  musicButton.textContent = "🔇 Music: Off · Tap to Play";
 });
 
 function makeStars(){
@@ -486,7 +495,7 @@ function startShow(){
   started = true;
   document.getElementById("startOverlay").classList.add("hidden");
 
-  // Music stays OFF until the user taps the music button.
+  // Music is optional: it stays OFF until the music button is clicked.
   music.volume = 0.65;
   music.loop = true;
 
@@ -499,20 +508,28 @@ function startShow(){
   setInterval(createHeart, 1100);
 }
 
-function toggleMusic(){
-  if(music.paused){
-    music.volume = 0.65;
-    music.play()
-      .then(() => {
-        musicButton.textContent = "🎵 Music: On · Tap to Turn Off";
-      })
-      .catch((error) => {
-        console.error("Birthday music could not play:", error);
-        musicButton.textContent = "⚠️ Can't Play Music — Check MP3";
-      });
-  } else {
+async function toggleMusic(){
+  if(!music.paused){
     music.pause();
     musicButton.textContent = "🔇 Music: Off · Tap to Play";
+    return;
+  }
+
+  try {
+    musicButton.textContent = "⏳ Loading music...";
+    music.volume = 0.65;
+    music.loop = true;
+
+    // Retry loading the expected MP3 path, then play from this user click.
+    if(music.networkState === HTMLMediaElement.NETWORK_EMPTY){
+      music.load();
+    }
+
+    await music.play();
+    musicButton.textContent = "🎵 Music: On · Tap to Turn Off";
+  } catch(error) {
+    console.error("Birthday music could not play:", error);
+    musicButton.textContent = "⚠️ Music not playing — Check MP3";
   }
 }
 
