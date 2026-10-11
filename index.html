@@ -124,7 +124,7 @@ button.secondary{background:#ffffff0b;color:#fff;border-color:#ffffff50}
   width:0;z-index:10;transition:width .5s;
 }
 #musicControl{
-  position:fixed;top:14px;right:14px;z-index:20;
+  position:fixed;top:14px;right:14px;z-index:60;
   padding:9px 13px;margin:0;font-size:.85rem;
   background:#ffffff12;color:#fff;border-color:#ffffff30;
 }
@@ -164,7 +164,7 @@ button.secondary{background:#ffffff0b;color:#fff;border-color:#ffffff50}
   <source src="./music/birthday.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicControl" class="hidden" onclick="toggleMusic()">🎵 Music: On</button>
+<button id="musicControl" onclick="toggleMusic()">🔇 Music: Off · Tap to Play</button>
 
 <div id="startOverlay">
   <div class="content">
@@ -413,7 +413,7 @@ const musicButton = document.getElementById("musicControl");
 // Show a useful button label if the MP3 is missing or cannot be decoded.
 music.addEventListener("error", () => {
   console.error("Could not load music/birthday.mp3. Check that the MP3 exists in the music folder.");
-  if (!music.paused) musicButton.textContent = "🎵 Music unavailable";
+  musicButton.textContent = "⚠️ Music file not found";
 });
 
 function makeStars(){
@@ -485,21 +485,10 @@ function startShow(){
 
   started = true;
   document.getElementById("startOverlay").classList.add("hidden");
-  musicButton.classList.remove("hidden");
 
+  // Music stays OFF until the user taps the music button.
   music.volume = 0.65;
   music.loop = true;
-  music.load();
-
-  // Start playback directly from the user's button click.
-  music.play()
-    .then(() => {
-      musicButton.textContent = "🎵 Music: On";
-    })
-    .catch((error) => {
-      console.error("Birthday music could not play:", error);
-      musicButton.textContent = "🎵 Tap to Play Music";
-    });
 
   showScene(1);
 
@@ -512,17 +501,18 @@ function startShow(){
 
 function toggleMusic(){
   if(music.paused){
+    music.volume = 0.65;
     music.play()
       .then(() => {
-        musicButton.textContent = "🎵 Music: On";
+        musicButton.textContent = "🎵 Music: On · Tap to Turn Off";
       })
       .catch((error) => {
         console.error("Birthday music could not play:", error);
-        musicButton.textContent = "🎵 Music unavailable";
+        musicButton.textContent = "⚠️ Can't Play Music — Check MP3";
       });
   } else {
     music.pause();
-    musicButton.textContent = "🔇 Music: Off";
+    musicButton.textContent = "🔇 Music: Off · Tap to Play";
   }
 }
 
